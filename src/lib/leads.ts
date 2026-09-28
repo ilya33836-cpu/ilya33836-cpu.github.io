@@ -7,23 +7,30 @@ export type Lead = {
 
 export type LeadStatus = 'sent' | 'fallback'
 
-const ENDPOINT = '/api/lead'
+/**
+ * Куда пробуем отправить заявку, по порядку.
+ * Первый адрес — serverless-функция (Cloudflare Pages, Vercel),
+ * второй — PHP-обработчик на обычном хостинге (Beget, Timeweb, REG.RU).
+ */
+const ENDPOINTS = ['/api/lead', '/api/lead.php']
 
-/** Отправляет заявку на серверную функцию, которая пересылает её в Telegram. */
+/** Отправляет заявку и возвращает 'sent', если хотя бы один обработчик её принял. */
 export async function submitLead(lead: Lead): Promise<LeadStatus> {
-  try {
-    const response = await fetch(ENDPOINT, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(lead),
-    })
+  for (const endpoint of ENDPOINTS) {
+    try {
+      const response = await fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(lead),
+      })
 
-    if (response.ok) {
+      if (!response.ok) continue
+
       const result = (await response.json()) as { ok?: boolean }
       if (result.ok) return 'sent'
+    } catch {
+      // Обработчик недоступен — пробуем следующий.
     }
-  } catch {
-    // Серверная функция недоступна — уходим в резервный сценарий.
   }
 
   return 'fallback'

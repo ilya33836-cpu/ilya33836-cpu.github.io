@@ -6,6 +6,8 @@ dist-ssr
 .env.*
 !.env.example
 deploy/lead.mjs
+deploy/*.zip
+api/config.php
 .DS_Store
 .vscode/*
 !.vscode/extensions.json
