@@ -11,8 +11,17 @@ export type LeadStatus = 'sent' | 'fallback'
  * Куда пробуем отправить заявку, по порядку.
  * Первый адрес — serverless-функция (Cloudflare Pages, Vercel),
  * второй — PHP-обработчик на обычном хостинге (Beget, Timeweb, REG.RU).
+ * Значение `none` — хостинг без бэкенда (GitHub Pages): форма сразу открывает
+ * Telegram, не делая заведомо бесполезных запросов.
  */
-const ENDPOINTS = ['/api/lead', '/api/lead.php']
+const rawEndpoints = import.meta.env.VITE_LEAD_ENDPOINTS ?? '/api/lead,/api/lead.php'
+const ENDPOINTS =
+  rawEndpoints.trim().toLowerCase() === 'none'
+    ? []
+    : rawEndpoints
+        .split(',')
+        .map((endpoint) => endpoint.trim())
+        .filter(Boolean)
 
 /** Отправляет заявку и возвращает 'sent', если хотя бы один обработчик её принял. */
 export async function submitLead(lead: Lead): Promise<LeadStatus> {
