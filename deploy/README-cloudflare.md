@@ -1,5 +1,13 @@
 # Деплой на Cloudflare Pages (бесплатно)
 
+> **Статус: не используется.** Проект `ilya-portfolio` в Cloudflare Pages удалён
+> 29 сентября 2026 года, автоматический деплой отключён. Основная публикация —
+> GitHub Pages, см. `deploy/README-php-hosting.md` и `deploy/publish-pages.ps1`.
+> Этот файл оставлен как инструкция на случай возврата: чтобы включить схему снова,
+> верните `.github/workflows/deploy-cloudflare.yml`, создайте проект
+> `npx wrangler pages create ilya-portfolio` и добавьте секреты
+> `CLOUDFLARE_API_TOKEN` и `CLOUDFLARE_ACCOUNT_ID` в репозиторий.
+
 Статика едет на CDN Cloudflare, заявки принимает Pages Function и уходят в тот же
 Telegram-бот. VPS не нужен.
 
