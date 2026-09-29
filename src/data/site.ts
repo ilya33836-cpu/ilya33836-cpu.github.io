@@ -1,6 +1,6 @@
 export const contact = {
-  telegramUrl: 'https://t.me/vebairazrabotka',
-  telegramLabel: '@vebairazrabotka',
+  telegramUrl: 'https://t.me/ilyawebcreate',
+  telegramLabel: '@ilyawebcreate',
 }
 
 export const navLinks = [
