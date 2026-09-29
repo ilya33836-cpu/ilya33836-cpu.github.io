@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+﻿import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import { ArrowUpRight, Sparkles } from 'lucide-react'
 import { onOpenAgent } from '../agent/bus'
@@ -22,8 +22,8 @@ export function AIAgent() {
   return (
     <section id="ai-agent" className="relative overflow-hidden bg-[#0b1120] py-24 sm:py-28">
       <div className="dot-grid pointer-events-none absolute inset-0 opacity-[0.12] [mask-image:radial-gradient(ellipse_60%_70%_at_50%_50%,#000_20%,transparent_75%)]" />
-      <div className="pointer-events-none absolute -left-20 top-10 h-[420px] w-[420px] rounded-full bg-accent/25 blur-[130px]" />
-      <div className="pointer-events-none absolute -right-24 bottom-0 h-[380px] w-[380px] rounded-full bg-violet-500/20 blur-[130px]" />
+      <div className="decor pointer-events-none absolute -left-20 top-10 h-[420px] w-[420px] rounded-full bg-accent/25 blur-[130px]" />
+      <div className="decor pointer-events-none absolute -right-24 bottom-0 h-[380px] w-[380px] rounded-full bg-violet-500/20 blur-[130px]" />
 
       <div className="shell relative grid items-center gap-14 lg:grid-cols-[1fr_0.95fr] lg:gap-16">
         <div>

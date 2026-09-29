@@ -8,6 +8,7 @@ dist-ssr
 deploy/lead.mjs
 deploy/*.zip
 api/config.php
+screenshots-original/
 .DS_Store
 .vscode/*
 !.vscode/extensions.json

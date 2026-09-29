@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 import type { Variants } from 'framer-motion'
 import type { ReactNode } from 'react'
 
@@ -22,6 +22,8 @@ type RevealProps = {
 }
 
 export function Reveal({ children, className, delay = 0, variants = fadeUp }: RevealProps) {
+  // Уважаем системную настройку «меньше движения»: показываем блок сразу.
+  const reduced = useReducedMotion()
   const withDelay: Variants = {
     hidden: variants.hidden,
     show: {
@@ -29,6 +31,8 @@ export function Reveal({ children, className, delay = 0, variants = fadeUp }: Re
       transition: { ...(variants.show as { transition?: object }).transition, delay },
     },
   }
+
+  if (reduced) return <div className={className}>{children}</div>
 
   return (
     <motion.div
@@ -49,6 +53,10 @@ type StaggerProps = {
 }
 
 export function Stagger({ children, className }: StaggerProps) {
+  const reduced = useReducedMotion()
+
+  if (reduced) return <div className={className}>{children}</div>
+
   return (
     <motion.div
       className={className}

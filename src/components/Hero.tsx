@@ -1,4 +1,4 @@
-import { motion, useReducedMotion } from 'framer-motion'
+﻿import { motion, useReducedMotion } from 'framer-motion'
 import { ArrowRight, Bot, Layers, Sparkles, Wrench } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import { LaptopMockup } from './LaptopMockup'
@@ -112,8 +112,8 @@ export function Hero() {
   return (
     <section id="top" className="relative isolate overflow-hidden pt-[84px]">
       <div className="dot-grid pointer-events-none absolute inset-0 -z-10 opacity-[0.55] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_0%,#000_35%,transparent_75%)]" />
-      <div className="pointer-events-none absolute -right-40 -top-40 -z-10 h-[520px] w-[520px] rounded-full bg-accent/12 blur-[130px]" />
-      <div className="pointer-events-none absolute -left-32 top-40 -z-10 h-[420px] w-[420px] rounded-full bg-accent/8 blur-[120px]" />
+      <div className="decor pointer-events-none absolute -right-40 -top-40 -z-10 h-[520px] w-[520px] rounded-full bg-accent/12 blur-[130px]" />
+      <div className="decor pointer-events-none absolute -left-32 top-40 -z-10 h-[420px] w-[420px] rounded-full bg-accent/8 blur-[120px]" />
 
       <div className="shell grid min-h-[calc(100svh-84px)] items-center gap-12 py-14 lg:gap-10 xl:grid-cols-[1.02fr_0.98fr] xl:gap-14 xl:py-20">
         <div>

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+﻿import { useState } from 'react'
 import type { FormEvent } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { ArrowUpRight, CheckCircle2, Send } from 'lucide-react'
@@ -52,7 +52,7 @@ export function Contact() {
 
   return (
     <section id="contact" className="relative py-24 sm:py-28">
-      <div className="pointer-events-none absolute right-0 top-0 -z-10 h-[380px] w-[380px] rounded-full bg-accent/8 blur-[120px]" />
+      <div className="decor pointer-events-none absolute right-0 top-0 -z-10 h-[380px] w-[380px] rounded-full bg-accent/8 blur-[120px]" />
 
       <div className="shell">
         <Reveal className="max-w-2xl">

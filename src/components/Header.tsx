@@ -42,13 +42,14 @@ export function Header() {
   }, [menuOpen])
 
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? 'glass border-b border-line shadow-[0_1px_0_rgba(17,24,39,0.02),0_10px_30px_-24px_rgba(17,24,39,0.35)]'
-          : 'border-b border-transparent bg-transparent'
-      }`}
-    >
+    <>
+      <header
+        className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
+          scrolled
+            ? 'glass border-b border-line shadow-[0_1px_0_rgba(17,24,39,0.02),0_10px_30px_-24px_rgba(17,24,39,0.35)]'
+            : 'border-b border-transparent bg-transparent'
+        }`}
+      >
       <div className="shell flex h-[84px] items-center justify-between gap-6">
         <a href="#top" className="group flex flex-col leading-none">
           <span className="font-display text-[22px] font-extrabold tracking-[-0.04em] text-ink">
@@ -101,67 +102,70 @@ export function Header() {
           onClick={() => setMenuOpen((open) => !open)}
           aria-label={menuOpen ? 'Закрыть меню' : 'Открыть меню'}
           aria-expanded={menuOpen}
-          className="flex h-11 w-11 items-center justify-center rounded-2xl border border-line bg-white text-ink transition-colors hover:border-accent/40 hover:text-accent lg:hidden"
+          aria-controls="mobile-menu"
+          className="flex h-11 w-11 items-center justify-center rounded-2xl border border-line bg-white/90 text-ink transition-colors hover:border-accent/40 hover:text-accent lg:hidden"
         >
           {menuOpen ? <X size={20} /> : <Menu size={20} />}
         </button>
       </div>
+      </header>
 
+      {/* Панель вынесена из header: backdrop-filter у шапки делает её
+          containing block для position: fixed, и вложенное меню схлопывалось. */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
+            id="mobile-menu"
             initial={{ opacity: 0, y: -12 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
-            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:hidden"
+            transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+            className="fixed inset-x-0 bottom-0 top-[84px] z-40 lg:hidden"
           >
-            <div className="fixed inset-x-0 bottom-0 top-[84px] z-40 lg:hidden">
-              <div className="h-full overflow-y-auto border-t border-line bg-white/95 px-5 py-5 backdrop-blur-xl">
-                <div className="flex flex-col gap-1">
-                  {navLinks.map((link) => (
-                    <a
-                      key={link.href}
-                      href={link.href}
-                      onClick={() => setMenuOpen(false)}
-                      className="rounded-2xl px-4 py-3 text-[17px] font-medium text-ink transition-colors hover:bg-accent-soft hover:text-accent"
-                    >
-                      {link.label}
-                    </a>
-                  ))}
-                </div>
-                <div className="mt-4 flex flex-col gap-2">
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setMenuOpen(false)
-                      openAgent('widget')
-                    }}
-                    className="btn btn-outline w-full"
-                  >
-                    AI Agent
-                  </button>
+            <div className="h-full overflow-y-auto overscroll-contain border-t border-line bg-white px-5 py-5 pb-10">
+              <nav className="flex flex-col gap-1">
+                {navLinks.map((link) => (
                   <a
-                    href="#contact"
+                    key={link.href}
+                    href={link.href}
                     onClick={() => setMenuOpen(false)}
-                    className="btn btn-primary w-full"
+                    className="rounded-2xl px-4 py-3.5 text-[17px] font-medium text-ink transition-colors hover:bg-accent-soft hover:text-accent"
                   >
-                    Обсудить проект
+                    {link.label}
                   </a>
-                  <a
-                    href={contact.telegramUrl}
-                    target="_blank"
-                    rel="noreferrer noopener"
-                    className="py-2 text-center text-sm font-medium text-muted"
-                  >
-                    Написать в Telegram
-                  </a>
-                </div>
+                ))}
+              </nav>
+              <div className="mt-4 flex flex-col gap-2">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setMenuOpen(false)
+                    openAgent('widget')
+                  }}
+                  className="btn btn-outline w-full"
+                >
+                  AI Agent
+                </button>
+                <a
+                  href="#contact"
+                  onClick={() => setMenuOpen(false)}
+                  className="btn btn-primary w-full"
+                >
+                  Обсудить проект
+                </a>
+                <a
+                  href={contact.telegramUrl}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="py-2 text-center text-sm font-medium text-muted"
+                >
+                  Написать в Telegram
+                </a>
               </div>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </>
   )
 }

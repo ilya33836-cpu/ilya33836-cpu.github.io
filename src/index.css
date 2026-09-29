@@ -235,6 +235,21 @@
     backdrop-filter: blur(18px) saturate(180%);
     -webkit-backdrop-filter: blur(18px) saturate(180%);
   }
+
+  /* Телефоны: размытие фона и декоративных пятен заметно тормозит скролл,
+     поэтому на узких экранах оставляем плотный фон без backdrop-filter. */
+  @media (max-width: 639px) {
+    .glass {
+      background-color: rgba(255, 255, 255, 0.94);
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+    }
+
+    .decor {
+      filter: blur(36px) !important;
+      opacity: 0.75;
+    }
+  }
 }
 
 @keyframes shimmer {

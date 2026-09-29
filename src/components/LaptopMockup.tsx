@@ -1,4 +1,4 @@
-import { useState } from 'react'
+﻿import { useState } from 'react'
 
 function Bar({ w = 'w-16', tone = 'bg-[#e8eaee]' }: { w?: string; tone?: string }) {
   return <span className={`block h-[5px] rounded-full ${w} ${tone}`} />
@@ -163,14 +163,14 @@ function NexoraScreen() {
 }
 
 /** Реальный скриншот NEXORA, если файл добавлен в public/projects. */
-const NEXORA_SHOT = '/projects/nexora-3.png'
+const NEXORA_SHOT = '/projects/nexora-3.webp'
 
 export function LaptopMockup() {
   const [shotReady, setShotReady] = useState(false)
 
   return (
     <div className="relative mx-auto w-full max-w-[620px] select-none">
-      <div className="pointer-events-none absolute -inset-x-10 -top-10 bottom-6 -z-10 rounded-full bg-accent/20 blur-[90px]" />
+      <div className="decor pointer-events-none absolute -inset-x-10 -top-10 bottom-6 -z-10 rounded-full bg-accent/20 blur-[90px]" />
 
       <div className="relative rounded-[24px] bg-gradient-to-b from-[#1c2436] to-[#0b1120] p-[10px] shadow-[0_40px_90px_-40px_rgba(11,17,32,0.65)] ring-1 ring-white/10">
         <div className="relative aspect-[16/10] overflow-hidden rounded-[14px] bg-white">
@@ -186,7 +186,7 @@ export function LaptopMockup() {
               shotReady ? 'opacity-100' : 'opacity-0'
             }`}
           />
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-white/0 via-white/0 to-white/25" />
+          <div className="decor pointer-events-none absolute inset-0 bg-gradient-to-tr from-white/0 via-white/0 to-white/25" />
         </div>
         <span className="absolute left-1/2 top-[3px] h-[3px] w-[52px] -translate-x-1/2 rounded-full bg-white/10" />
       </div>

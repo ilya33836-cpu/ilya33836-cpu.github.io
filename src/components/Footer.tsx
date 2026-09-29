@@ -1,4 +1,4 @@
-import { ArrowUpRight, Send } from 'lucide-react'
+﻿import { ArrowUpRight, Send } from 'lucide-react'
 import { contact, navLinks } from '../data/site'
 
 const socialIcons = [{ label: 'Telegram', href: contact.telegramUrl, icon: Send }]
@@ -6,7 +6,7 @@ const socialIcons = [{ label: 'Telegram', href: contact.telegramUrl, icon: Send 
 export function Footer() {
   return (
     <footer className="relative overflow-hidden bg-[#0b1120] pt-20 pb-10">
-      <div className="pointer-events-none absolute -bottom-32 left-1/4 h-[380px] w-[520px] rounded-full bg-accent/18 blur-[130px]" />
+      <div className="decor pointer-events-none absolute -bottom-32 left-1/4 h-[380px] w-[520px] rounded-full bg-accent/18 blur-[130px]" />
 
       <div className="shell relative">
         <div className="grid gap-12 border-b border-white/10 pb-12 lg:grid-cols-[1.2fr_0.8fr_0.9fr]">

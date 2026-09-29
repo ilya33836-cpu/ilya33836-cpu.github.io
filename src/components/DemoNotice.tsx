@@ -1,4 +1,4 @@
-import { AlertCircle, Clock3, Globe2, LockKeyhole } from 'lucide-react'
+﻿import { AlertCircle, Clock3, Globe2, LockKeyhole } from 'lucide-react'
 import { Reveal } from './ui/Reveal'
 
 const notices = [
@@ -11,7 +11,7 @@ export function DemoNotice() {
   return (
     <section id="demo-notice" className="relative overflow-hidden py-20 sm:py-24">
       <div className="absolute inset-x-0 top-0 -z-10 h-full bg-danger-soft" />
-      <div className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[420px] w-[720px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-red-200/25 blur-[120px]" />
+      <div className="decor pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[420px] w-[720px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-red-200/25 blur-[120px]" />
 
       <div className="shell">
         <Reveal>
