@@ -20,24 +20,34 @@ export function ProjectPreview({
   onUnavailable,
 }: Props) {
   const initial = src ?? project.image
-  const [current, setCurrent] = useState(initial)
+  const [attempt, setAttempt] = useState(0)
   const [loaded, setLoaded] = useState(false)
   const [failed, setFailed] = useState(false)
 
+  // Повторная попытка с меняющимся адресом: если браузер отдаёт из кэша
+  // устаревшую картинку или первый запрос оборвался, второй проходит.
+  const current = attempt === 0 ? initial : `${initial}?attempt=${attempt}`
+
   useEffect(() => {
-    setCurrent(initial)
+    setAttempt(0)
     setLoaded(false)
     setFailed(false)
   }, [initial])
 
   const handleError = () => {
+    if (attempt === 0) {
+      setAttempt(1)
+      return
+    }
     if (project.fallbackImage && current !== project.fallbackImage) {
-      setCurrent(project.fallbackImage)
+      setAttempt(-1)
       return
     }
     setFailed(true)
     onUnavailable?.()
   }
+
+  const imageSrc = attempt === -1 ? (project.fallbackImage ?? current) : current
 
   return (
     <div className={`relative overflow-hidden bg-[#f4f5f7] ${ratio} ${className}`}>
@@ -55,8 +65,8 @@ export function ProjectPreview({
         </div>
       ) : (
         <img
-          key={current}
-          src={current}
+          key={imageSrc}
+          src={imageSrc}
           alt={`Интерфейс проекта ${project.title}`}
           loading={eager ? 'eager' : 'lazy'}
           decoding="async"
