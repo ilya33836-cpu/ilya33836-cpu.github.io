@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { createPortal } from 'react-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import {
   Check,
@@ -57,10 +58,12 @@ export function ProjectModal({ project, onClose }: Props) {
     setBroken([])
   }, [project?.id])
 
-  return (
+  // Портал в body: внутри секции с content-visibility окно позиционировалось бы
+  // относительно секции, а не экрана, и уезжало вниз на телефоне.
+  return createPortal(
     <AnimatePresence>
       {project && (
-        <div className="fixed inset-0 z-[70] flex items-end justify-center p-0 sm:items-center sm:p-6">
+        <div className="fixed inset-0 z-[70] flex items-end justify-center sm:items-center sm:p-6">
           <motion.button
             type="button"
             aria-label="Закрыть окно"
@@ -249,6 +252,7 @@ export function ProjectModal({ project, onClose }: Props) {
           </motion.div>
         </div>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body,
   )
 }
