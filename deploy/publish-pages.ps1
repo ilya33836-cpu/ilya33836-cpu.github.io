@@ -83,7 +83,8 @@ try {
   }
   # Важно: вывод собираем целиком через Out-String — иначе Select-Object
   # прерывает пайплайн и git завершается с ненулевым кодом.
-  $pushOutput = & git push --force "https://x-access-token:$($env:GH_TOKEN)@github.com/$Repo.git" "$Branch`:$Branch" 2>&1 | Out-String
+  # postBuffer увеличен: при большом объёме картинок GitHub отвечал 408.
+  $pushOutput = & git -c http.postBuffer=524288000 push --force "https://x-access-token:$($env:GH_TOKEN)@github.com/$Repo.git" "$Branch`:$Branch" 2>&1 | Out-String
   $pushCode = $LASTEXITCODE
   $pushOutput.Trim() -split "`n" | Select-Object -Last 2 | ForEach-Object { $_.Trim() }
   if ($pushCode -ne 0) { throw "Не удалось отправить файлы (git exit $pushCode)" }

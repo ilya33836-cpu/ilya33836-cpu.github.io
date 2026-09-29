@@ -46,7 +46,7 @@ export function Header() {
       <header
         className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
           scrolled
-            ? 'glass border-b border-line shadow-[0_1px_0_rgba(17,24,39,0.02),0_10px_30px_-24px_rgba(17,24,39,0.35)]'
+            ? 'glass border-b border-line/80 shadow-[0_1px_0_rgba(17,24,39,0.04),0_16px_36px_-28px_rgba(17,24,39,0.5)]'
             : 'border-b border-transparent bg-transparent'
         }`}
       >
