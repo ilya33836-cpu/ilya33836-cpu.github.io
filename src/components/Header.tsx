@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
+import type { CSSProperties } from 'react'
 import { Menu, X } from 'lucide-react'
 import { contact, navLinks } from '../data/site'
 import { openAgent } from '../agent/bus'
@@ -72,13 +72,11 @@ export function Header() {
                 }`}
               >
                 {link.label}
-                {active === id && (
-                  <motion.span
-                    layoutId="nav-active"
-                    className="absolute inset-0 -z-10 rounded-full bg-white shadow-[0_1px_2px_rgba(17,24,39,0.06)] ring-1 ring-line"
-                    transition={{ type: 'spring', stiffness: 380, damping: 32 }}
-                  />
-                )}
+                <span
+                  className={`pointer-events-none absolute inset-0 -z-10 rounded-full bg-white shadow-[0_1px_2px_rgba(17,24,39,0.06)] ring-1 ring-line transition-opacity duration-300 ${
+                    active === id ? 'opacity-100' : 'opacity-0'
+                  }`}
+                />
               </a>
             )
           })}
@@ -112,17 +110,13 @@ export function Header() {
 
       {/* Панель вынесена из header: backdrop-filter у шапки делает её
           containing block для position: fixed, и вложенное меню схлопывалось. */}
-      <AnimatePresence>
-        {menuOpen && (
-          <motion.div
-            id="mobile-menu"
-            initial={{ opacity: 0, y: -12 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -12 }}
-            transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-x-0 bottom-0 top-[84px] z-40 lg:hidden"
-          >
-            <div className="h-full overflow-y-auto overscroll-contain border-t border-line bg-white px-5 py-5 pb-10">
+      {menuOpen && (
+        <div
+          id="mobile-menu"
+          className="rise fixed inset-x-0 bottom-0 top-[84px] z-40 lg:hidden"
+          style={{ '--rise-y': '-12px' } as CSSProperties}
+        >
+          <div className="h-full overflow-y-auto overscroll-contain border-t border-line bg-white px-5 py-5 pb-10">
               <nav className="flex flex-col gap-1">
                 {navLinks.map((link) => (
                   <a
@@ -163,9 +157,8 @@ export function Header() {
                 </a>
               </div>
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          </div>
+      )}
     </>
   )
 }

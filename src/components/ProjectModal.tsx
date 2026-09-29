@@ -150,8 +150,13 @@ export function ProjectModal({ project, onClose }: Props) {
                       >
                         <img
                           src={item}
+                          srcSet={item.endsWith('.webp')
+                            ? `${item.replace(/\.webp$/, '-160.webp')} 160w, ${item.replace(/\.webp$/, '-320.webp')} 320w, ${item} 1600w`
+                            : undefined}
+                          sizes="128px"
                           alt=""
                           loading="lazy"
+                          decoding="async"
                           onError={() => setBroken((prev) => [...prev, item])}
                           className="h-full w-full object-cover transition-transform duration-500 group-hover/thumb:scale-105"
                         />

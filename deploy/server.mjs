@@ -59,7 +59,11 @@ function json(response, code, payload) {
 
 function sendFile(response, file, cacheControl) {
   const type = mimeTypes[extname(file)] ?? 'application/octet-stream'
-  response.writeHead(200, { 'Content-Type': type, 'Cache-Control': cacheControl })
+  response.writeHead(200, {
+    'Content-Type': type,
+    'Content-Length': statSync(file).size,
+    'Cache-Control': cacheControl,
+  })
   createReadStream(file).pipe(response)
 }
 
@@ -103,8 +107,17 @@ const server = createServer(async (request, response) => {
   const safe = target.startsWith(distDir)
 
   if (safe && relative !== '/' && existsSync(target) && statSync(target).isFile()) {
-    const immutable = relative.startsWith('/assets/')
-    sendFile(response, target, immutable ? 'public, max-age=31536000, immutable' : 'public, max-age=3600')
+    const immutable = relative.startsWith('/assets/') || relative.startsWith('/fonts/')
+    sendFile(
+      response,
+      target,
+      // Хешированные файлы можно держать в кэше, index.html — обновлять сразу.
+      relative.endsWith('index.html')
+        ? 'no-cache'
+        : immutable
+          ? 'public, max-age=31536000, immutable'
+          : 'public, max-age=86400',
+    )
     return
   }
 

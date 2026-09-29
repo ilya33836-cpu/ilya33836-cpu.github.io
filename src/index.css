@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@import './fonts.css';
 
 @theme {
   --color-canvas: #fafafa;
@@ -249,6 +250,59 @@
       filter: blur(36px) !important;
       opacity: 0.75;
     }
+  }
+}
+
+/* Секции ниже первого экрана не отрисовываются, пока не приблизились
+   к зоне видимости: заметно быстрее первый экран и прокрутка. */
+#projects,
+#ai-agent,
+#why,
+#process,
+#faq,
+#contact {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 900px;
+}
+
+/* Появление блоков на CSS: не тянем framer-motion в первый экран. */
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, var(--rise-y, 20px), 0) scale(var(--rise-scale, 1));
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes float-card {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(0, -9px, 0);
+  }
+}
+
+.rise {
+  animation: rise-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: var(--rise-delay, 0s);
+}
+
+.float-card {
+  animation: float-card 6s ease-in-out infinite;
+  animation-delay: var(--float-delay, 0s);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rise,
+  .float-card {
+    animation: none;
   }
 }
 

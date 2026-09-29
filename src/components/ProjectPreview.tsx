@@ -8,7 +8,22 @@ type Props = {
   ratio?: string
   eager?: boolean
   className?: string
+  sizes?: string
   onUnavailable?: () => void
+}
+
+const DEFAULT_SIZES = '(min-width: 1280px) 400px, (min-width: 1024px) 33vw, (min-width: 640px) 45vw, 92vw'
+
+/** Собирает srcset с вариантами 640/960/оригинал для уменьшения трафика на телефоне. */
+function buildSrcSet(src: string, suffix: string) {
+  if (!src.endsWith('.webp')) return undefined
+  const base = src.slice(0, -'.webp'.length)
+  const withQuery = (value: string) => (suffix ? `${value}${suffix}` : value)
+  return [
+    `${withQuery(`${base}-640.webp`)} 640w`,
+    `${withQuery(`${base}-960.webp`)} 960w`,
+    `${withQuery(src)} 1600w`,
+  ].join(', ')
 }
 
 export function ProjectPreview({
@@ -17,6 +32,7 @@ export function ProjectPreview({
   ratio = 'aspect-[16/10]',
   eager = false,
   className = '',
+  sizes = DEFAULT_SIZES,
   onUnavailable,
 }: Props) {
   const initial = src ?? project.image
@@ -27,6 +43,7 @@ export function ProjectPreview({
   // Повторная попытка с меняющимся адресом: если браузер отдаёт из кэша
   // устаревшую картинку или первый запрос оборвался, второй проходит.
   const current = attempt === 0 ? initial : `${initial}?attempt=${attempt}`
+  const suffix = attempt === 0 ? '' : `?attempt=${attempt}`
 
   useEffect(() => {
     setAttempt(0)
@@ -48,6 +65,7 @@ export function ProjectPreview({
   }
 
   const imageSrc = attempt === -1 ? (project.fallbackImage ?? current) : current
+  const srcSet = attempt === -1 ? undefined : buildSrcSet(current, suffix)
 
   return (
     <div className={`relative overflow-hidden bg-[#f4f5f7] ${ratio} ${className}`}>
@@ -67,6 +85,8 @@ export function ProjectPreview({
         <img
           key={imageSrc}
           src={imageSrc}
+          srcSet={srcSet}
+          sizes={srcSet ? sizes : undefined}
           alt={`Интерфейс проекта ${project.title}`}
           loading={eager ? 'eager' : 'lazy'}
           decoding="async"

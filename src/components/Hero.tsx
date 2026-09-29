@@ -1,10 +1,16 @@
-﻿import { motion, useReducedMotion } from 'framer-motion'
+﻿import type { CSSProperties } from 'react'
 import { ArrowRight, Bot, Layers, Sparkles, Wrench } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import { LaptopMockup } from './LaptopMockup'
 import { openAgent } from '../agent/bus'
 
-const EASE = [0.16, 1, 0.3, 1] as const
+/** Произвольные CSS-переменные для анимаций появления. */
+const rise = (delay: number, y = 20, scale = 1): CSSProperties =>
+  ({
+    '--rise-delay': `${delay}s`,
+    '--rise-y': `${y}px`,
+    '--rise-scale': scale,
+  }) as CSSProperties
 
 const metrics = [
   { value: '2+ года', label: 'разработки' },
@@ -45,21 +51,16 @@ const floaters: {
 ]
 
 function FloatingCard({ item }: { item: (typeof floaters)[number] }) {
-  const reduceMotion = useReducedMotion()
   const Icon = item.icon
 
   return (
-    <motion.div
+    <div
       className={`absolute z-20 hidden xl:block ${item.className}`}
-      initial={{ opacity: 0, scale: 0.9 }}
-      animate={{ opacity: 1, scale: 1 }}
-      whileHover={{ scale: 1.04, y: -6, transition: { duration: 0.3 } }}
-      transition={{ duration: 0.5, ease: EASE }}
+      style={{ animation: 'rise-in 0.5s cubic-bezier(0.16,1,0.3,1) both' }}
     >
-      <motion.div
-        animate={{ y: reduceMotion ? 0 : [0, -9, 0] }}
-        transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut', delay: item.delay }}
-        className="flex items-center gap-3 rounded-2xl border border-line bg-white/90 px-3.5 py-2.5 shadow-[0_18px_40px_-26px_rgba(17,24,39,0.5)] backdrop-blur-md"
+      <div
+        className="float-card flex items-center gap-3 rounded-2xl border border-line bg-white/90 px-3.5 py-2.5 shadow-[0_18px_40px_-26px_rgba(17,24,39,0.5)] backdrop-blur-md transition-transform duration-300 hover:!-translate-y-1.5 hover:scale-[1.04]"
+        style={{ '--float-delay': `${item.delay}s` } as CSSProperties}
       >
         <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-accent-soft text-accent">
           <Icon size={17} />
@@ -73,8 +74,8 @@ function FloatingCard({ item }: { item: (typeof floaters)[number] }) {
             {item.subtitle}
           </span>
         </span>
-      </motion.div>
-    </motion.div>
+      </div>
+    </div>
   )
 }
 
@@ -82,11 +83,9 @@ function FloaterTile({ item, index }: { item: (typeof floaters)[number]; index: 
   const Icon = item.icon
 
   return (
-    <motion.div
-      className="min-w-0 rounded-2xl border border-line bg-white px-3 py-2.5 shadow-soft xl:hidden"
-      initial={{ opacity: 0, y: 16 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: 0.3 + index * 0.08, ease: EASE }}
+    <div
+      className="rise min-w-0 rounded-2xl border border-line bg-white px-3 py-2.5 shadow-soft xl:hidden"
+      style={rise(0.3 + index * 0.08, 16)}
     >
       <div className="flex items-center gap-2.5">
         <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-accent-soft text-accent">
@@ -102,13 +101,11 @@ function FloaterTile({ item, index }: { item: (typeof floaters)[number]; index: 
           </span>
         </span>
       </div>
-    </motion.div>
+    </div>
   )
 }
 
 export function Hero() {
-  const reduceMotion = useReducedMotion()
-
   return (
     <section id="top" className="relative isolate overflow-hidden pt-[84px]">
       <div className="dot-grid pointer-events-none absolute inset-0 -z-10 opacity-[0.55] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_0%,#000_35%,transparent_75%)]" />
@@ -117,22 +114,16 @@ export function Hero() {
 
       <div className="shell grid min-h-[calc(100svh-84px)] items-center gap-12 py-14 lg:gap-10 xl:grid-cols-[1.02fr_0.98fr] xl:gap-14 xl:py-20">
         <div>
-          <motion.div
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: EASE }}
-          >
+          <div className="rise" style={rise(0, 18)}>
             <span className="eyebrow">
               <Sparkles size={13} className="text-accent" />
               WEB • SAAS • AI • AUTOMATION
             </span>
-          </motion.div>
+          </div>
 
-          <motion.h1
-            className="mt-6 text-[clamp(2rem,5.6vw,3.25rem)] font-extrabold leading-[1.06] text-ink"
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.06, ease: EASE }}
+          <h1
+            className="rise mt-6 text-[clamp(2rem,5.6vw,3.25rem)] font-extrabold leading-[1.06] text-ink"
+            style={rise(0.06, 24)}
           >
             Разрабатываю сайты и{' '}
             <span className="relative whitespace-nowrap text-accent">
@@ -153,24 +144,17 @@ export function Hero() {
               </svg>
             </span>{' '}
             для бизнеса.
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            className="mt-6 max-w-xl text-[17px] leading-relaxed text-muted"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.14, ease: EASE }}
+          <p
+            className="rise mt-6 max-w-xl text-[17px] leading-relaxed text-muted"
+            style={rise(0.14)}
           >
             Создаю лендинги, Web App, CRM, SaaS-платформы, Telegram-ботов и AI-агентов с
             современным дизайном и продуманной логикой.
-          </motion.p>
+          </p>
 
-          <motion.div
-            className="mt-9 flex flex-col gap-3 sm:flex-row"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.22, ease: EASE }}
-          >
+          <div className="rise mt-9 flex flex-col gap-3 sm:flex-row" style={rise(0.22)}>
             <a href="#projects" className="btn btn-primary w-full sm:w-auto">
               Смотреть проекты
               <ArrowRight size={17} />
@@ -183,24 +167,20 @@ export function Hero() {
               Поговорить с AI
               <Sparkles size={16} />
             </button>
-          </motion.div>
+          </div>
 
-          <motion.a
+          <a
             href="#services"
-            className="mt-5 inline-flex w-fit items-center gap-1.5 text-[14px] font-semibold text-muted transition-colors duration-300 hover:text-accent"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.34 }}
+            className="rise mt-5 inline-flex w-fit items-center gap-1.5 text-[14px] font-semibold text-muted transition-colors duration-300 hover:text-accent"
+            style={rise(0.34, 0)}
           >
             Услуги и цены — от 20 000 ₽
             <ArrowRight size={15} />
-          </motion.a>
+          </a>
 
-          <motion.div
-            className="mt-12 grid grid-cols-1 gap-y-6 border-t border-line pt-8 sm:grid-cols-3 sm:gap-0"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3, ease: EASE }}
+          <div
+            className="rise mt-12 grid grid-cols-1 gap-y-6 border-t border-line pt-8 sm:grid-cols-3 sm:gap-0"
+            style={rise(0.3)}
           >
             {metrics.map((metric, index) => (
               <div
@@ -213,15 +193,10 @@ export function Hero() {
                 <p className="mt-1 text-[13px] text-muted">{metric.label}</p>
               </div>
             ))}
-          </motion.div>
+          </div>
         </div>
 
-        <motion.div
-          className="relative flex flex-col items-center xl:items-end"
-          initial={{ opacity: 0, scale: 0.96, y: reduceMotion ? 0 : 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.18, ease: EASE }}
-        >
+        <div className="rise relative flex flex-col items-center xl:items-end" style={rise(0.18, 20, 0.96)}>
           <div className="w-full max-w-[560px] xl:max-w-[600px]">
             <LaptopMockup />
           </div>
@@ -233,7 +208,7 @@ export function Hero() {
           {floaters.map((item) => (
             <FloatingCard key={`desktop-${item.title}`} item={item} />
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   )

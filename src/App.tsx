@@ -1,33 +1,62 @@
+import { lazy, Suspense, useEffect } from 'react'
 import { Header } from './components/Header'
-import { AgentWidget } from './components/agent/AgentWidget'
 import { Hero } from './components/Hero'
-import { ServicesPricing } from './components/ServicesPricing'
-import { Projects } from './components/Projects'
-import { DemoNotice } from './components/DemoNotice'
-import { AIAgent } from './components/AIAgent'
-import { WhyMe } from './components/WhyMe'
-import { Process } from './components/Process'
-import { FAQ } from './components/FAQ'
-import { Contact } from './components/Contact'
 import { Footer } from './components/Footer'
 
+/**
+ * Первый экран весит заметно меньше остальной страницы, поэтому всё, что ниже
+ * сгиба, грузится отдельными чанками: по скроллу или в простое браузера.
+ * К моменту, когда посетитель доскроллит или нажмёт ссылку в меню, всё уже готово.
+ */
+const BelowFold = lazy(() =>
+  import('./components/BelowFold').then((m) => ({ default: m.BelowFold })),
+)
+const AIAgent = lazy(() => import('./components/AIAgent').then((m) => ({ default: m.AIAgent })))
+const AgentWidget = lazy(() =>
+  import('./components/agent/AgentWidget').then((m) => ({ default: m.AgentWidget })),
+)
+
+/** Заглушка на время загрузки чанка, сохраняет высоту и якоря секций. */
+function Placeholder({ height = 640 }: { height?: number }) {
+  return <div style={{ minHeight: height }} aria-hidden="true" />
+}
+
 export default function App() {
+  useEffect(() => {
+    const warm = () => {
+      void import('./components/BelowFold')
+      void import('./components/AIAgent')
+      void import('./components/agent/AgentWidget')
+    }
+
+    // Подгружаем заранее: по первому касанию/прокрутке и в простое.
+    const idle = window.requestIdleCallback
+    if (typeof idle === 'function') idle(warm, { timeout: 2000 })
+    else window.setTimeout(warm, 1200)
+
+    const onFirstScroll = () => {
+      warm()
+      window.removeEventListener('scroll', onFirstScroll)
+    }
+    window.addEventListener('scroll', onFirstScroll, { passive: true, once: true })
+  }, [])
+
   return (
     <div className="min-h-screen bg-canvas">
       <Header />
       <main>
         <Hero />
-        <ServicesPricing />
-        <Projects />
-        <DemoNotice />
-        <AIAgent />
-        <WhyMe />
-        <Process />
-        <FAQ />
-        <Contact />
+        <Suspense fallback={<Placeholder height={1200} />}>
+          <BelowFold />
+        </Suspense>
+        <Suspense fallback={<Placeholder height={720} />}>
+          <AIAgent />
+        </Suspense>
       </main>
       <Footer />
-      <AgentWidget />
+      <Suspense fallback={null}>
+        <AgentWidget />
+      </Suspense>
     </div>
   )
 }
