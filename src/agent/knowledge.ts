@@ -105,21 +105,21 @@ export type DemoInfo = {
 export const demos: Record<string, DemoInfo> = {
   dentaline: {
     title: 'Dentaline',
-    url: 'https://dentaline-landing-pi.vercel.app',
+    url: 'https://ilya33836-cpu.github.io/dentaline-site/',
     type: 'Landing Page',
     note: 'современный лендинг частной стоматологии с записью, услугами и ценами',
     needsVpn: true,
   },
   northBarber: {
     title: 'North Barber',
-    url: 'https://north-barber-landing.vercel.app',
+    url: 'https://ilya33836-cpu.github.io/north-barber-landing/',
     type: 'Landing Page',
     note: 'тёмный премиальный лендинг барбершопа',
     needsVpn: true,
   },
   formaHome: {
     title: 'Forma Home',
-    url: 'https://forma-home-gamma.vercel.app',
+    url: 'https://ilya33836-cpu.github.io/forma-home/',
     type: 'Landing Page',
     note: 'лендинг студии дизайна интерьеров и архитектуры в стиле современного минимализма',
     needsVpn: true,

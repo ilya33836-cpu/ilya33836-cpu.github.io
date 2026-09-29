@@ -53,12 +53,12 @@ export const pricingServices: PricingService[] = [
       {
         title: 'Dentaline',
         label: 'Смотреть лендинг',
-        url: 'https://dentaline-landing-pi.vercel.app',
+        url: 'https://ilya33836-cpu.github.io/dentaline-site/',
       },
       {
         title: 'North Barber',
         label: 'Смотреть лендинг',
-        url: 'https://north-barber-landing.vercel.app',
+        url: 'https://ilya33836-cpu.github.io/north-barber-landing/',
       },
     ],
     cta: { label: 'Обсудить проект', href: '#contact' },

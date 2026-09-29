@@ -132,7 +132,7 @@ export const projects: Project[] = [
     category: 'LANDING PAGE',
     description:
       'Современный лендинг частной стоматологии с записью, услугами и ценами.',
-    url: 'https://dentaline-landing-pi.vercel.app',
+    url: 'https://ilya33836-cpu.github.io/dentaline-site/',
     image: '/projects/dentaline-1.png',
     fallbackImage: '/projects/dentaline.svg',
     gallery: [
@@ -151,7 +151,7 @@ export const projects: Project[] = [
     title: 'NORTH BARBER',
     category: 'LANDING PAGE',
     description: 'Премиальный сайт барбершопа с тёмным минималистичным дизайном.',
-    url: 'https://north-barber-landing.vercel.app',
+    url: 'https://ilya33836-cpu.github.io/north-barber-landing/',
     image: '/projects/north-barber-1.png',
     fallbackImage: '/projects/north-barber.svg',
     gallery: [
@@ -170,7 +170,7 @@ export const projects: Project[] = [
     title: 'FORMA HOME',
     category: 'LANDING PAGE',
     description: 'Студия дизайна интерьеров и архитектуры в стиле современного минимализма.',
-    url: 'https://forma-home-gamma.vercel.app',
+    url: 'https://ilya33836-cpu.github.io/forma-home/',
     image: '/projects/forma-home-1.png',
     fallbackImage: '/projects/forma-home.svg',
     gallery: [
