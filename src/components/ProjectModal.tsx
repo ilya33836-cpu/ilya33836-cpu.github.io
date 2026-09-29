@@ -8,7 +8,7 @@ import {
   ChevronRight,
   Clock3,
   ExternalLink,
-  Globe2,
+  Info,
   Send,
   X,
   ZoomIn,
@@ -222,9 +222,9 @@ export function ProjectModal({ project, onClose }: Props) {
               )}
 
               {project.vpn && (
-                <p className="mt-3 flex items-start gap-2.5 rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-[14px] leading-relaxed text-amber-900">
-                  <Globe2 size={17} className="mt-0.5 shrink-0" />
-                  Сайт размещён на зарубежном хостинге и может быть недоступен без VPN.
+                <p className="mt-3 flex items-start gap-2 text-[12px] leading-relaxed text-muted">
+                  <Info size={13} className="mt-0.5 shrink-0" />
+                  Сайт размещён на бесплатном хостинге, поэтому первый запуск может занять до минуты.
                 </p>
               )}
 

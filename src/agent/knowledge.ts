@@ -12,9 +12,6 @@ export const DEMO_WARNING =
 export const RENDER_WARNING =
   'Если вход в аккаунт не сработал с первого раза — повторите попытку после полной загрузки сервера. Это особенность бесплатного Render.'
 
-export const VPN_WARNING =
-  'Для открытия этого лендинга может понадобиться VPN.'
-
 export type ServiceInfo = {
   key: ServiceKey
   name: string
@@ -98,7 +95,6 @@ export type DemoInfo = {
   type: string
   note: string
   needsAuth?: boolean
-  needsVpn?: boolean
   accounts?: string[]
 }
 
@@ -108,21 +104,18 @@ export const demos: Record<string, DemoInfo> = {
     url: 'https://ilya33836-cpu.github.io/dentaline-site/',
     type: 'Landing Page',
     note: 'современный лендинг частной стоматологии с записью, услугами и ценами',
-    needsVpn: true,
   },
   northBarber: {
     title: 'North Barber',
     url: 'https://ilya33836-cpu.github.io/north-barber-landing/',
     type: 'Landing Page',
     note: 'тёмный премиальный лендинг барбершопа',
-    needsVpn: true,
   },
   formaHome: {
     title: 'Forma Home',
     url: 'https://ilya33836-cpu.github.io/forma-home/',
     type: 'Landing Page',
     note: 'лендинг студии дизайна интерьеров и архитектуры в стиле современного минимализма',
-    needsVpn: true,
   },
   autohub: {
     title: 'AUTOHUB',

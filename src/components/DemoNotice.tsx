@@ -1,10 +1,10 @@
-﻿import { AlertCircle, Clock3, Globe2, LockKeyhole } from 'lucide-react'
+﻿import { AlertCircle, Clock3, LockKeyhole } from 'lucide-react'
 import { Reveal } from './ui/Reveal'
 
 const notices = [
   { icon: Clock3, text: 'Первый запуск сервера: до 60 сек' },
   { icon: LockKeyhole, text: 'Иногда вход требует повторной попытки' },
-  { icon: Globe2, text: 'Некоторые лендинги работают только через VPN' },
+  { icon: AlertCircle, text: 'Демо открываются в обычном браузере' },
 ]
 
 export function DemoNotice() {

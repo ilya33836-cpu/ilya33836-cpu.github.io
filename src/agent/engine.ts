@@ -3,7 +3,6 @@ import {
   DEMO_WARNING,
   PRICE_DISCLAIMER,
   RENDER_WARNING,
-  VPN_WARNING,
   demos,
   objections,
   services,
@@ -670,7 +669,7 @@ class LocalBrain implements Brain {
     this.recommended = true
     const demo = demos[this.demoKey()]
     const access = demo.accounts ? ` Демо-доступ: ${demo.accounts.join('; ')}.` : ''
-    const text = `Рекомендую посмотреть ${demo.title} — ${demo.note}.${access} ${DEMO_WARNING}${demo.needsVpn ? ` ${VPN_WARNING}` : ''}`
+    const text = `Рекомендую посмотреть ${demo.title} — ${demo.note}.${access} ${DEMO_WARNING}`
     return {
       text,
       link: { label: `Открыть ${demo.title}`, url: demo.url },
@@ -695,7 +694,7 @@ class LocalBrain implements Brain {
     const text = [
       `Судя по вашим требованиям, лучше всего подойдёт ${service.name}.`,
       `Посмотрите ${demo.title} — ${demo.note}.${demo.accounts ? ` Демо-доступ: ${demo.accounts.join('; ')}.` : ''}`,
-      `${DEMO_WARNING}${demo.needsAuth ? ` ${RENDER_WARNING}` : ''}${demo.needsVpn ? ` ${VPN_WARNING}` : ''}`,
+      `${DEMO_WARNING}${demo.needsAuth ? ` ${RENDER_WARNING}` : ''}`,
       `Стоимость — ${price}, срок — ${term}. ${PRICE_DISCLAIMER}`,
       question ? question.text : '',
     ]
