@@ -14,11 +14,12 @@ import type { Brain, Message, Profile, ServiceKey, Suggestion, Turn } from './ty
 /*  Разбор текста                                                      */
 /* ------------------------------------------------------------------ */
 
+// Точку не трогаем: без неё «25.09.2025» рассыпается на отдельные слова.
 const normalize = (value: string) =>
   value
     .toLowerCase()
     .replace(/ё/g, 'е')
-    .replace(/[!,.?;:"«»()]/g, ' ')
+    .replace(/[!?,;:"«»()]/g, ' ')
     .replace(/\s+/g, ' ')
     .trim()
 
@@ -26,7 +27,7 @@ const normalize = (value: string) =>
 const keywordsOf = (text: string) =>
   text
     .split(' ')
-    .map((word) => word.replace(/[?.!,]/g, ''))
+    .map((word) => word.replace(/[?.!,.]/g, ''))
     .filter((word) => word.length > 3)
 
 /* ------------------------------------------------------------------ */
@@ -202,9 +203,29 @@ const slots: Slot[] = [
       { label: 'Нет, нужен с нуля', send: 'Логотипа нет, нужно придумать' },
     ],
   },
-  { key: 'deadline', ask: 'Когда планируете запуск?' },
+  {
+    key: 'deadline',
+    ask: 'Когда планируете запуск?',
+    chips: [
+      { label: 'Как можно быстрее', send: 'Нужен запуск как можно быстрее' },
+      { label: 'Через неделю', send: 'Через неделю' },
+      { label: 'В течение месяца', send: 'Через месяц' },
+      { label: 'Не горит', send: 'Не горит' },
+    ],
+  },
   { key: 'contact', ask: 'Оставьте Telegram, чтобы передать заявку разработчику.' },
 ]
+
+/** На какой вопрос ждём ответа: короткая реплика в ответ на него — это ответ, а не «не понял». */
+type Awaiting = { kind: 'slot'; key: keyof Profile } | { kind: 'type' } | { kind: 'niche' }
+
+const retryText: Record<string, string> = {
+  deadline: 'Уточню по сроку: напишите «сегодня», «через две недели», «25.09» или «не горит».',
+  contact: 'Нужен ваш Telegram в формате @username — так заявка дойдёт до разработчика.',
+  needsCabinet: 'Уточню: нужен ли личный кабинет с авторизацией? Ответьте «да» или «нет».',
+  needsLeads: 'Уточню: нужны ли онлайн-заявки или запись прямо на сайте? Ответьте «да» или «нет».',
+  hasLogo: 'Уточню: есть ли логотип и фирменный стиль? Ответьте «да» или «нет».',
+}
 
 /* ------------------------------------------------------------------ */
 /*  Разбор полей                                                       */
@@ -222,14 +243,36 @@ const findContact = (raw: string) => {
 
 const NEGATED = /(не нужен|не нужна|не нужно|не требуется|без)\s+(личный\s+|личного\s+)?(кабинет\w*|авторизаци\w*|логин\w*|вход\w*|облако|дашборд\w*)|кабинет\w*\s+не\s+нужн\w*/g
 
+const MONTHS = 'январ|феврал|март|апрел|ма[йя]|июн|июл|август|сентябр|октябр|ноябр|декабр'
+
 const findDeadline = (text: string) => {
-  if (/срочно|быстро|как можно быстрее|прямо сейчас|побыстрее/.test(text)) return 'срочно'
-  const days = text.match(/(?:^|\s)(\d{1,2})\s*(дней|день|дн)/)
+  if (/(срочно|быстро|как можно быстрее|прямо сейчас|побыстрее|завтра же)/.test(text)) return 'срочно'
+  if (/(сегодня|сейчас же|немедленно)/.test(text)) return 'сегодня'
+  if (/послезавтра/.test(text)) return 'послезавтра'
+  if (/(завтра|назавтра)/.test(text)) return 'завтра'
+  if (/(не горит|не спеш|без срока|когда-нибудь|позже|пока не знаю|срока нет)/.test(text))
+    return 'не горит'
+  const days = text.match(/(\d{1,2})\s*(дней|дня|день|дн\.?)/)
   if (days) return `через ${days[1]} дн.`
-  const weeks = text.match(/(?:^|\s)(\d|две|три)\s*(недель|недели|недел)/)
+  const weeks = text.match(/(\d|две|три|четыре|пять|шесть)\s*(недел[ьию]|неделю|неделя)/)
   if (weeks) return `через ${weeks[1]} нед.`
-  if (/месяц|мес /.test(text)) return 'в течение месяца'
+  if (/через\s+(неделю|неделе|недели|недель)/.test(text)) return 'через неделю'
+  if (/(месяц|квартал)/.test(text)) return 'в течение месяца'
+  if (/на следующей неделе/.test(text)) return 'через неделю'
+  if (/^\d{1,2}[./-]\d{1,2}([./-]\d{2,4})?\.?$/.test(text)) return text.replace(/\.$/, '')
+  if (new RegExp(`\\d{1,2}\\s*(?:${MONTHS}|числа|ое|е)\\w*`).test(text)) return text
   return undefined
+}
+
+/** Ответ на вопрос «нужен ли…»: понимаем «да», «нет» и их синонимы. */
+const readYesNo = (text: string): boolean | null => {
+  const first = text.split(' ')[0] ?? ''
+  if (/^нет[,.!]?$/.test(first)) return false
+  if (/^(не|без|никак)\s+(нужен|нужна|нужно|нужны|надо|требуется|хочу|планир)/.test(text)) return false
+  if (/^(да|ага|угу|давай|да[,.!]?|конечно|согласен|ок|окей)[,.!]?$/.test(first)) return true
+  if (/^(нужен|нужна|нужно|нужны|хочу|хотел|есть|сделай|сделаем|включим|включить)/.test(first))
+    return true
+  return null
 }
 
 const demoAliases: Record<string, keyof typeof demos> = {
@@ -282,7 +325,8 @@ const intentRules: IntentRule[] = [
     id: 'continue',
     score: 6,
     // Хвост обязателен, иначе «ну» из «нужен лендинг» считается согласием.
-    test: /^(продолж\w*|далее|дальше|вернуться|к вопросу|о вернемся|ок|окей|ага|угу|давай|хорошо|ладно|ну|go|next)(\s|$)/,
+    // Класс букв кириллический: \w в JS не знает про русские буквы.
+    test: /^(продолж[а-я]*|далее|дальше|вернуться|к вопросу|о вернемся|ок|окей|ага|угу|давай|хорошо|ладно|ну|go|next)(\s|$)/,
   },
   { id: 'thanks', score: 5, test: /(спасиб|благодар|до свидания|пока$|отлично|круто|класс|здорово)/ },
   { id: 'identity', score: 5, test: /(ты бот|ты робот|ты человек|кто ты|ты настоящ|ты живой|ты настоящий)/ },
@@ -366,8 +410,10 @@ class LocalBrain implements Brain {
   private lastChips: string[] = []
   /** Чипы, которые являются ответами на заданный вопрос (в отличие от действий). */
   private answerChips: string[] = []
-  /** Последний ответ — это вопрос, а не информация. */
-  private askedQuestion = false
+  /** Последний ответ — это вопрос, а не информация. Ждём ответа именно на него. */
+  private awaiting: Awaiting | null = null
+  /** Вопросы, которые уже переспрашивали, чтобы не зациклиться. */
+  private retries = new Set<string>()
   /** В этом сообщении изменились данные проекта. */
   private absorbed = false
   /** Какой уточняющий вопрос закрыл этот ответ. */
@@ -390,11 +436,12 @@ class LocalBrain implements Brain {
     this.repeats = 0
     this.lastChips = []
     this.absorbed = false
+    this.awaiting = null
+    this.retries.clear()
   }
 
   async reply(_history: Message[], input: string): Promise<Turn> {
     this.turns += 1
-    this.askedQuestion = false
     const raw = input.trim()
     const text = normalize(raw)
     const isEcho = text.length > 0 && text === this.lastInput
@@ -408,6 +455,10 @@ class LocalBrain implements Brain {
 
   /** Главный маршрут: сначала смысл сообщения, и только потом — сценарий диалога. */
   private route(text: string, isEcho: boolean): Turn {
+    // Вопрос предыдущего ответа: короткая реплика в ответ на него — это ответ на него.
+    const awaiting = this.awaiting
+    this.awaiting = null
+
     const objection = objections.find((item) => item.match.test(text))
     if (objection) {
       this.dropDetection()
@@ -492,6 +543,12 @@ class LocalBrain implements Brain {
     // Данные из ответа приняты: продолжаем сценарий, а не отвечаем на свой же вопрос.
     if (isChipAnswer || this.absorbed) {
       return this.flow()
+    }
+
+    // Короткий ответ на наш вопрос — это ответ, а не «не понял».
+    if (awaiting && !QUESTION_MARK.test(text)) {
+      const answer = this.answerAwaiting(awaiting, text)
+      if (answer) return answer
     }
 
     // Ничего не распознали: сперва пробуем ответить по базе знаний,
@@ -745,10 +802,54 @@ class LocalBrain implements Brain {
   private nextSlotQuestion(): Turn | null {
     const pending = this.pendingSlots()
     if (pending.length === 0) return null
-    this.askedQuestion = true
     const asked = pending.slice(0, 1)
     asked.forEach((slot) => this.asked.add(slot.key))
+    this.awaiting = { kind: 'slot', key: asked[0].key }
     return { text: asked.map((slot) => slot.ask).join(' '), suggestions: this.slotSuggestions(asked) }
+  }
+
+  /**
+   * Короткий ответ на заданный вопрос: «сегодня», «25.09», «да», «не надо».
+   * Такие реплики не проходят через смысловой разбор — принимаем их как ответ
+   * на наш же вопрос, а один раз переспросим конкретнее, если разобрать не удалось.
+   */
+  private answerAwaiting(awaiting: Awaiting, text: string): Turn | null {
+    if (text.split(' ').length > 6) return null
+
+    if (awaiting.kind === 'slot') {
+      const slot = slots.find((item) => item.key === awaiting.key)
+      if (!slot) return this.flow()
+
+      // «Да» и «нет» на вопрос про кабинет, записи и логотип.
+      if (slot.key === 'needsCabinet' || slot.key === 'needsLeads' || slot.key === 'hasLogo') {
+        const flag = readYesNo(text)
+        if (flag !== null) {
+          this.profile[slot.key] = flag
+          this.asked.add(slot.key)
+          return this.flow()
+        }
+      }
+
+      // Ответ не разобрали: сначала подсказываем формат ответа.
+      if (!this.retries.has(slot.key)) {
+        this.retries.add(slot.key)
+        return {
+          text: retryText[slot.key] ?? slot.ask,
+          suggestions: this.slotSuggestions([slot]),
+        }
+      }
+
+      // Второй раз подряд — не держим диалог на одном вопросе.
+      this.asked.add(slot.key)
+      return this.flow()
+    }
+
+    if (!this.retries.has(awaiting.kind)) {
+      this.retries.add(awaiting.kind)
+      return awaiting.kind === 'niche' ? this.nicheQuestion() : this.typePicker()
+    }
+
+    return this.flow()
   }
 
   private slotSuggestions(asked: Slot[]): Suggestion[] {
@@ -838,6 +939,8 @@ class LocalBrain implements Brain {
 
   /** Сценарий диалога, когда сообщение не было отдельным вопросом. */
   private flow(): Turn {
+    // Отложенный вопрос устарел: сценарий задаст свежий.
+    this.deferred = null
     if (this.newType) {
       const type = this.newType
       this.newType = null
@@ -907,14 +1010,14 @@ class LocalBrain implements Brain {
   }
 
   private typeQuestion(type: TypeKey): Turn {
-    this.askedQuestion = true
+    this.awaiting = { kind: 'type' }
     this.asked.add('projectType')
     const question = typeQuestions[type]
     return { text: question.ask, suggestions: question.chips }
   }
 
   private knowledgeBaseQuestion(): Turn {
-    this.askedQuestion = true
+    this.awaiting = { kind: 'type' }
     this.asked.add('projectType')
     this.knowledgeBase = true
     return {
@@ -928,7 +1031,7 @@ class LocalBrain implements Brain {
   }
 
   private typePicker(prelude?: string): Turn {
-    this.askedQuestion = true
+    this.awaiting = { kind: 'type' }
     this.asked.add('projectType')
     return {
       text: prelude ?? 'Что нужно сделать?',
@@ -944,7 +1047,7 @@ class LocalBrain implements Brain {
   }
 
   private nicheQuestion(): Turn {
-    this.askedQuestion = true
+    this.awaiting = { kind: 'niche' }
     this.asked.add('nicheIntro')
     return {
       text: 'Понял. Что за бизнес — для какого проекта делаем?',
@@ -1138,7 +1241,7 @@ class LocalBrain implements Brain {
     this.lastChips = (turn.suggestions ?? [])
       .map((item) => (item.send ? normalize(item.send) : ''))
       .filter(Boolean)
-    this.answerChips = this.askedQuestion ? [...this.lastChips] : []
+    this.answerChips = this.awaiting ? [...this.lastChips] : []
 
     if (!this.recent.includes(turn.text)) {
       this.recent.push(turn.text)
