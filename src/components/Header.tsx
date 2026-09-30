@@ -2,9 +2,8 @@ import { useEffect, useState } from 'react'
 import type { CSSProperties } from 'react'
 import { Menu, X } from 'lucide-react'
 import { contact, navLinks } from '../data/site'
-import { openAgent } from '../agent/bus'
 
-const SECTION_IDS = ['services', 'projects', 'ai-agent', 'faq', 'contact']
+const SECTION_IDS = ['services', 'projects', 'faq', 'contact']
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false)
@@ -83,13 +82,6 @@ export function Header() {
         </nav>
 
         <div className="hidden items-center gap-3 lg:flex">
-          <button
-            type="button"
-            onClick={() => openAgent('widget')}
-            className="btn btn-outline !rounded-2xl !px-5 !py-3 !text-sm"
-          >
-            AI Agent
-          </button>
           <a href="#contact" className="btn btn-primary !rounded-2xl !px-5 !py-3 !text-sm">
             Обсудить проект
           </a>
@@ -130,16 +122,6 @@ export function Header() {
                 ))}
               </nav>
               <div className="mt-4 flex flex-col gap-2">
-                <button
-                  type="button"
-                  onClick={() => {
-                    setMenuOpen(false)
-                    openAgent('widget')
-                  }}
-                  className="btn btn-outline w-full"
-                >
-                  AI Agent
-                </button>
                 <a
                   href="#contact"
                   onClick={() => setMenuOpen(false)}

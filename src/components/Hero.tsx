@@ -2,7 +2,6 @@
 import { ArrowRight, Bot, Layers, Sparkles, Wrench } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import { LaptopMockup } from './LaptopMockup'
-import { openAgent } from '../agent/bus'
 
 /** Произвольные CSS-переменные для анимаций появления. */
 const rise = (delay: number, y = 20, scale = 1): CSSProperties =>
@@ -159,14 +158,6 @@ export function Hero() {
               Смотреть проекты
               <ArrowRight size={17} />
             </a>
-            <button
-              type="button"
-              onClick={() => openAgent('widget')}
-              className="btn btn-outline w-full sm:w-auto"
-            >
-              Поговорить с AI
-              <Sparkles size={16} />
-            </button>
           </div>
 
           <a

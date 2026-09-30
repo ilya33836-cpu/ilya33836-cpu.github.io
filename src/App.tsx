@@ -11,10 +11,6 @@ import { Footer } from './components/Footer'
 const BelowFold = lazy(() =>
   import('./components/BelowFold').then((m) => ({ default: m.BelowFold })),
 )
-const AIAgent = lazy(() => import('./components/AIAgent').then((m) => ({ default: m.AIAgent })))
-const AgentWidget = lazy(() =>
-  import('./components/agent/AgentWidget').then((m) => ({ default: m.AgentWidget })),
-)
 
 /** Заглушка на время загрузки чанка, сохраняет высоту и якоря секций. */
 function Placeholder({ height = 640 }: { height?: number }) {
@@ -25,8 +21,6 @@ export default function App() {
   useEffect(() => {
     const warm = () => {
       void import('./components/BelowFold')
-      void import('./components/AIAgent')
-      void import('./components/agent/AgentWidget')
     }
 
     // Подгружаем заранее: по первому касанию/прокрутке и в простое.
@@ -49,14 +43,8 @@ export default function App() {
         <Suspense fallback={<Placeholder height={1200} />}>
           <BelowFold />
         </Suspense>
-        <Suspense fallback={<Placeholder height={720} />}>
-          <AIAgent />
-        </Suspense>
       </main>
       <Footer />
-      <Suspense fallback={null}>
-        <AgentWidget />
-      </Suspense>
     </div>
   )
 }
