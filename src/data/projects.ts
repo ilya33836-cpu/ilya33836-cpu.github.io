@@ -127,6 +127,31 @@ export const projects: Project[] = [
     ],
   },
   {
+    id: 'autotech-service',
+    title: 'АВТОТЕХ',
+    category: 'LANDING PAGE',
+    description:
+      'Лендинг автосервиса полного цикла: услуги и цены, гарантии, фотогалерея, отзывы и запись на сервис.',
+    url: 'https://ilya33836-cpu.github.io/autotech-service/',
+    image: '/projects/autotech-1.webp',
+    gallery: [
+      '/projects/autotech-1.webp',
+      '/projects/autotech-2.webp',
+      '/projects/autotech-3.webp',
+      '/projects/autotech-4.webp',
+      '/projects/autotech-5.webp',
+    ],
+    stack: ['Дизайн', 'Адаптивность', 'Анимации'],
+    features: [
+      'Каталог услуг и прайс',
+      'Фотогалерея сервиса и отзывы',
+      'Форма записи на сервис',
+      'Адаптивный дизайн',
+    ],
+    featured: false,
+    vpn: true,
+  },
+  {
     id: 'dentaline',
     title: 'DENTALINE',
     category: 'LANDING PAGE',
