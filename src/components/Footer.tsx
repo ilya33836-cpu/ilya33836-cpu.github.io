@@ -1,7 +1,11 @@
 ﻿import { ArrowUpRight, Send } from 'lucide-react'
 import { contact, navLinks } from '../data/site'
+import { VkIcon } from './ui/VkIcon'
 
-const socialIcons = [{ label: 'Telegram', href: contact.telegramUrl, icon: Send }]
+const socialIcons = [
+  { label: 'Telegram', href: contact.telegramUrl, icon: Send },
+  { label: 'VK', href: contact.vkUrl, icon: VkIcon },
+]
 
 export function Footer() {
   return (
@@ -73,6 +77,17 @@ export function Footer() {
                 >
                   <Send size={15} className="text-blue-400" />
                   {contact.telegramLabel}
+                </a>
+              </li>
+              <li>
+                <a
+                  href={contact.vkUrl}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="inline-flex items-center gap-2 text-[15px] text-white/65 transition-colors duration-300 hover:text-white"
+                >
+                  <VkIcon size={15} className="text-[#0077FF]" />
+                  VK: {contact.vkLabel}
                 </a>
               </li>
             </ul>

@@ -1,6 +1,7 @@
 ﻿import { ArrowUpRight, Send } from 'lucide-react'
 import { contact } from '../data/site'
 import { Reveal } from './ui/Reveal'
+import { VkIcon } from './ui/VkIcon'
 
 const hints = [
   {
@@ -29,7 +30,7 @@ export function Contact() {
             Обсудим ваш проект
           </h2>
           <p className="mt-4 text-[17px] leading-relaxed text-muted">
-            Напишите мне в Telegram — отвечу с идеями по структуре, стеку и срокам.
+            Напишите мне в Telegram или VK — отвечу с идеями по структуре, стеку и срокам.
           </p>
         </Reveal>
 
@@ -49,6 +50,29 @@ export function Contact() {
                   <span className="block text-[13px] font-medium text-muted">Telegram</span>
                   <span className="mt-0.5 block truncate font-display text-[17px] font-bold text-ink">
                     {contact.telegramLabel}
+                  </span>
+                </span>
+                <ArrowUpRight
+                  size={18}
+                  className="ml-auto shrink-0 text-muted transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent"
+                />
+              </a>
+            </Reveal>
+
+            <Reveal delay={0.05}>
+              <a
+                href={contact.vkUrl}
+                target="_blank"
+                rel="noreferrer noopener"
+                className="card card-hover group flex items-center gap-4 p-6"
+              >
+                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#0077FF]/10 text-[#0077FF]">
+                  <VkIcon size={21} />
+                </span>
+                <span className="min-w-0">
+                  <span className="block text-[13px] font-medium text-muted">VK</span>
+                  <span className="mt-0.5 block truncate font-display text-[17px] font-bold text-ink">
+                    {contact.vkLabel}
                   </span>
                 </span>
                 <ArrowUpRight

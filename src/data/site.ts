@@ -1,6 +1,8 @@
 export const contact = {
   telegramUrl: 'https://t.me/aiprodevolper',
   telegramLabel: '@aiprodevolper',
+  vkUrl: 'https://vk.com/id822089626',
+  vkLabel: 'id822089626',
 }
 
 export const navLinks = [

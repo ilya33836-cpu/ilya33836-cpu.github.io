@@ -137,6 +137,14 @@ export function Header() {
                 >
                   Написать в Telegram
                 </a>
+                <a
+                  href={contact.vkUrl}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="py-2 text-center text-sm font-medium text-muted"
+                >
+                  VK: {contact.vkLabel}
+                </a>
               </div>
             </div>
           </div>
