@@ -67,7 +67,7 @@ export const pricingServices: PricingService[] = [
     id: 'telegram-bot',
     number: '02',
     title: 'Telegram-бот',
-    price: 'от 15 000 ₽',
+    price: 'от 10 000 ₽',
     description:
       'Telegram-бот для автоматизации общения с клиентами, заявок, записи и внутренних процессов бизнеса.',
     includes: [
