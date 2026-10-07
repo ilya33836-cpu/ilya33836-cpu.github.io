@@ -91,7 +91,7 @@ export const pricingServices: PricingService[] = [
     id: 'automation',
     number: '03',
     title: 'Автоматизация бизнеса',
-    price: 'от 80 000 ₽',
+    price: 'от 40 000 ₽',
     description:
       'Связываем заявки, CRM, таблицы, почту, Telegram и AI в единый автоматизированный процесс.',
     includes: [
