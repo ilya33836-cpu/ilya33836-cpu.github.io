@@ -165,7 +165,7 @@ export function Hero() {
             className="rise mt-5 inline-flex w-fit items-center gap-1.5 text-[14px] font-semibold text-muted transition-colors duration-300 hover:text-accent"
             style={rise(0.34, 0)}
           >
-            Услуги и цены — от 15 000 ₽
+            Услуги и цены — от 10 000 ₽
             <ArrowRight size={15} />
           </a>
 
