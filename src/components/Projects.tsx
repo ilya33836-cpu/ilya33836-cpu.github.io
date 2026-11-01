@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { ArrowRight, ExternalLink, Expand } from 'lucide-react'
 import type { Project } from '../data/projects'
@@ -95,6 +95,42 @@ function ProjectCard({
 
 export function Projects() {
   const [activeProject, setActiveProject] = useState<Project | null>(null)
+
+  useEffect(() => {
+    if (!activeProject) return
+
+    const prevTitle = document.title
+    document.title = `${activeProject.title} — ИИ-администратор для бизнеса | Портфолио`
+
+    const touched: { el: HTMLMetaElement; prev: string | null; created: boolean }[] = []
+
+    const put = (attr: 'name' | 'property', key: string, value: string) => {
+      const el = document.querySelector(`meta[${attr}="${key}"]`) as HTMLMetaElement | null
+      if (el) {
+        touched.push({ el, prev: el.getAttribute('content'), created: false })
+        el.setAttribute('content', value)
+      } else {
+        const created = document.createElement('meta')
+        created.setAttribute(attr, key)
+        created.setAttribute('content', value)
+        document.head.appendChild(created)
+        touched.push({ el: created, prev: null, created: true })
+      }
+    }
+
+    put('name', 'description', activeProject.description)
+    put('property', 'og:title', activeProject.title)
+    put('property', 'og:description', activeProject.description)
+
+    return () => {
+      document.title = prevTitle
+      touched.forEach(({ el, prev, created }) => {
+        if (created) el.remove()
+        else if (prev === null) el.removeAttribute('content')
+        else el.setAttribute('content', prev)
+      })
+    }
+  }, [activeProject])
 
   return (
     <section id="projects" className="relative py-24 sm:py-28">

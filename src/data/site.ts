@@ -1,6 +1,6 @@
 export const contact = {
-  telegramUrl: 'https://t.me/aiprodevolper',
-  telegramLabel: '@aiprodevolper',
+  telegramUrl: 'https://t.me/ilyawebcreate',
+  telegramLabel: '@ilyawebcreate',
   vkUrl: 'https://vk.ru/ilya_devolper',
   vkLabel: 'ilya_devolper',
 }
