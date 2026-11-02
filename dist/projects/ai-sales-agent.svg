@@ -1,0 +1,143 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" width="1600" height="1000" role="img" aria-label="AI Sales Agent">
+  <defs>
+    <linearGradient id="ai-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F6F7FB" />
+      <stop offset="1" stop-color="#EDEFF5" />
+    </linearGradient>
+    <linearGradient id="ai-grad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2563EB" />
+      <stop offset="1" stop-color="#7C3AED" />
+    </linearGradient>
+  </defs>
+
+  <rect width="1600" height="1000" fill="url(#ai-bg)" />
+
+  <g font-family="Arial, Helvetica, sans-serif">
+    <rect x="0" y="0" width="330" height="1000" fill="#FFFFFF" />
+    <line x1="330" y1="0" x2="330" y2="1000" stroke="#E5E7EB" />
+
+    <rect x="32" y="38" width="40" height="40" rx="13" fill="url(#ai-grad)" />
+    <text x="86" y="64" font-size="19" font-weight="700" fill="#111827">AI Sales Agent</text>
+    <rect x="32" y="110" width="266" height="44" rx="14" fill="#F3F4F6" />
+    <text x="52" y="138" font-size="13" fill="#9AA1AD">Поиск по диалогам</text>
+
+    <g font-size="14">
+      <rect x="20" y="176" width="290" height="92" rx="16" fill="#EFF4FF" />
+      <text x="44" y="210" font-size="15" font-weight="700" fill="#111827">Стоматология · новый</text>
+      <text x="44" y="236" font-size="12" fill="#6B7280">Лендинг с онлайн-записью</text>
+      <circle cx="286" cy="204" r="5" fill="#2563EB" />
+
+      <rect x="20" y="284" width="290" height="76" rx="16" fill="#FFFFFF" />
+      <text x="44" y="318" font-size="15" font-weight="600" fill="#111827">Автосервис · CRM</text>
+      <text x="44" y="342" font-size="12" fill="#9AA1AD">Ведёт диалог 12 мин</text>
+
+      <rect x="20" y="376" width="290" height="76" rx="16" fill="#FFFFFF" />
+      <text x="44" y="410" font-size="15" font-weight="600" fill="#111827">Интерьеры · лендинг</text>
+      <text x="44" y="434" font-size="12" fill="#9AA1AD">Отправлен в Telegram</text>
+
+      <rect x="20" y="468" width="290" height="76" rx="16" fill="#FFFFFF" />
+      <text x="44" y="502" font-size="15" font-weight="600" fill="#111827">Онлайн-школа · SaaS</text>
+      <text x="44" y="526" font-size="12" fill="#9AA1AD">Уточняет бюджет</text>
+    </g>
+
+    <text x="32" y="600" font-size="12" font-weight="700" fill="#9AA1AD" letter-spacing="1">СТАТУСЫ</text>
+    <g font-size="13" fill="#6B7280">
+      <circle cx="40" cy="638" r="5" fill="#10B981" />
+      <text x="56" y="643">Новые — 14</text>
+      <circle cx="40" cy="676" r="5" fill="#F59E0B" />
+      <text x="56" y="681">В работе — 6</text>
+      <circle cx="40" cy="714" r="5" fill="#2563EB" />
+      <text x="56" y="719">Переданы в продажи — 21</text>
+    </g>
+
+    <rect x="20" y="880" width="290" height="88" rx="18" fill="#111827" />
+    <text x="44" y="916" font-size="14" font-weight="700" fill="#FFFFFF">Конверсия в Lead</text>
+    <text x="44" y="948" font-size="24" font-weight="700" fill="#FFFFFF">68%</text>
+    <rect x="130" y="930" width="156" height="10" rx="5" fill="#1E293B" />
+    <rect x="130" y="930" width="106" height="10" rx="5" fill="#2563EB" />
+
+    <g>
+      <rect x="330" y="0" width="900" height="80" fill="#FFFFFF" />
+      <line x1="330" y1="80" x2="1230" y2="80" stroke="#E5E7EB" />
+      <text x="366" y="48" font-size="17" font-weight="700" fill="#111827">Диалог с клиентом</text>
+      <circle cx="700" cy="42" r="5" fill="#10B981" />
+      <text x="714" y="47" font-size="13" fill="#6B7280">Агент онлайн</text>
+      <rect x="1090" y="22" width="110" height="36" rx="12" fill="#111827" />
+      <text x="1145" y="45" font-size="13" font-weight="700" fill="#FFFFFF" text-anchor="middle">Завершить</text>
+    </g>
+
+    <g>
+      <rect x="366" y="112" width="560" height="72" rx="20" fill="#2563EB" />
+      <text x="394" y="142" font-size="15" fill="#FFFFFF">Мне нужен сайт для стоматологии.</text>
+      <text x="394" y="166" font-size="12" fill="#BFDBFE">10:42</text>
+
+      <rect x="470" y="204" width="700" height="112" rx="20" fill="#FFFFFF" stroke="#E5E7EB" />
+      <text x="498" y="236" font-size="15" fill="#111827">Понял. Это коммерческий лендинг с записью, услугами</text>
+      <text x="498" y="260" font-size="15" fill="#111827">и формой заявок. Уточню несколько деталей...</text>
+      <text x="498" y="292" font-size="12" fill="#9AA1AD">AI · 10:42</text>
+
+      <rect x="530" y="336" width="640" height="168" rx="20" fill="#FFFFFF" stroke="#E5E7EB" />
+      <text x="558" y="370" font-size="15" fill="#111827">1. Есть ли уже фирменный стиль и фотографии клиники?</text>
+      <text x="558" y="404" font-size="15" fill="#111827">2. Нужна онлайн-запись или только форма заявок?</text>
+      <text x="558" y="438" font-size="15" fill="#111827">3. Планируете ли вы запускать рекламу?</text>
+      <text x="558" y="480" font-size="12" fill="#9AA1AD">AI · 10:43</text>
+
+      <rect x="366" y="524" width="520" height="72" rx="20" fill="#2563EB" />
+      <text x="394" y="554" font-size="15" fill="#FFFFFF">Стиль есть, нужна запись, реклама пойдёт.</text>
+      <text x="394" y="578" font-size="12" fill="#BFDBFE">10:43</text>
+
+      <rect x="430" y="616" width="740" height="180" rx="20" fill="#F5F3FF" stroke="#DDD6FE" />
+      <text x="458" y="650" font-size="15" fill="#3B2A6B">Готово. Собрал структуру проекта:</text>
+      <text x="458" y="682" font-size="14" fill="#5B4B8A">— лендинг с 6 секциями и формой записи</text>
+      <text x="458" y="708" font-size="14" fill="#5B4B8A">— адаптив под мобильные</text>
+      <text x="458" y="734" font-size="14" fill="#5B4B8A">— форма заявки в Telegram</text>
+      <text x="458" y="770" font-size="12" fill="#8B7BC4">AI · 10:44</text>
+
+      <rect x="366" y="820" width="500" height="52" rx="18" fill="#FFFFFF" stroke="#E5E7EB" />
+      <text x="392" y="852" font-size="14" fill="#9AA1AD">Введите сообщение...</text>
+      <rect x="836" y="820" width="52" height="52" rx="18" fill="url(#ai-grad)" />
+      <text x="862" y="853" font-size="16" font-weight="700" fill="#FFFFFF" text-anchor="middle">→</text>
+    </g>
+
+    <g>
+      <rect x="1230" y="80" width="370" height="920" fill="#FFFFFF" />
+      <line x1="1230" y1="80" x2="1230" y2="1000" stroke="#E5E7EB" />
+      <text x="1262" y="124" font-size="18" font-weight="700" fill="#111827">Сформированный Lead</text>
+      <rect x="1262" y="146" width="126" height="30" rx="10" fill="#ECFDF5" />
+      <circle cx="1280" cy="161" r="5" fill="#10B981" />
+      <text x="1294" y="166" font-size="12" font-weight="700" fill="#059669">Готов к отправке</text>
+
+      <rect x="1262" y="200" width="306" height="96" rx="20" fill="#EFF4FF" />
+      <text x="1284" y="228" font-size="12" fill="#6B7280">Тип проекта</text>
+      <text x="1284" y="258" font-size="19" font-weight="700" fill="#1D4ED8">Landing Page</text>
+      <text x="1284" y="280" font-size="12" fill="#6B7280">Уверенность 94%</text>
+
+      <g font-size="14">
+        <text x="1262" y="342" font-size="12" fill="#9AA1AD">Клиент</text>
+        <text x="1262" y="368" font-size="15" font-weight="600" fill="#111827">Стоматология «Денталйн»</text>
+        <text x="1262" y="404" font-size="12" fill="#9AA1AD">Контакт</text>
+        <text x="1262" y="430" font-size="15" font-weight="600" fill="#111827">@dentaline_clinic</text>
+        <text x="1262" y="466" font-size="12" fill="#9AA1AD">Бюджет</text>
+        <text x="1262" y="492" font-size="15" font-weight="600" fill="#111827">от 30 000 ₽</text>
+        <text x="1262" y="528" font-size="12" fill="#9AA1AD">Сроки</text>
+        <text x="1262" y="554" font-size="15" font-weight="600" fill="#111827">2–3 недели</text>
+      </g>
+
+      <rect x="1262" y="586" width="306" height="150" rx="20" fill="#FAFAFB" stroke="#EEF0F3" />
+      <text x="1284" y="618" font-size="12" fill="#9AA1AD">Заметки агента</text>
+      <rect x="1284" y="636" width="256" height="9" rx="4.5" fill="#D8DCE3" />
+      <rect x="1284" y="656" width="220" height="9" rx="4.5" fill="#D8DCE3" />
+      <rect x="1284" y="676" width="240" height="9" rx="4.5" fill="#D8DCE3" />
+      <rect x="1284" y="696" width="170" height="9" rx="4.5" fill="#D8DCE3" />
+
+      <rect x="1262" y="766" width="306" height="52" rx="18" fill="#111827" />
+      <text x="1415" y="798" font-size="14" font-weight="700" fill="#FFFFFF" text-anchor="middle">Передать в продажи</text>
+      <rect x="1262" y="832" width="306" height="52" rx="18" fill="#FFFFFF" stroke="#E5E7EB" />
+      <text x="1415" y="864" font-size="14" font-weight="600" fill="#111827" text-anchor="middle">Скачать PDF</text>
+
+      <rect x="1262" y="900" width="306" height="76" rx="20" fill="#111827" />
+      <text x="1284" y="930" font-size="12" fill="#94A3B8">Время диалога</text>
+      <text x="1284" y="958" font-size="18" font-weight="700" fill="#FFFFFF">3 мин 12 сек</text>
+    </g>
+  </g>
+</svg>
