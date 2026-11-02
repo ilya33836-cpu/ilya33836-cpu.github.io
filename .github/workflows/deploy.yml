@@ -35,7 +35,7 @@ jobs:
           cp -r dist /tmp/dist-build
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
-          git remote set-url origin https://x-access-token:${TOKEN}@github.com/ilya33836-cpu/ilya-portfolio.git
+          git remote set-url origin https://x-access-token:${TOKEN}@github.com/ilya33836-cpu/ilya33836-cpu.github.io.git
           git fetch origin gh-pages || true
           git checkout -B gh-pages origin/gh-pages 2>/dev/null || git checkout --orphan gh-pages
           git rm -rf .

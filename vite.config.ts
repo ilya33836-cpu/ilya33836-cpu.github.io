@@ -3,7 +3,6 @@ import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
-  base: '/ilya-portfolio/',
   plugins: [react(), tailwindcss()],
   build: {
     // Современный синтаксис: меньше трансформаций и меньше итоговый код.
