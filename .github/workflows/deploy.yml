@@ -5,7 +5,7 @@ on:
     branches: [main]
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -28,9 +28,19 @@ jobs:
         run: npm ci
       - name: Build client
         run: npm run build:client
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: dist
-      - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v4
+      - name: Deploy to gh-pages
+        env:
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cp -r dist /tmp/dist-build
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git remote set-url origin https://x-access-token:${TOKEN}@github.com/ilya33836-cpu/ilya-portfolio.git
+          git fetch origin gh-pages || true
+          git checkout -B gh-pages origin/gh-pages 2>/dev/null || git checkout --orphan gh-pages
+          git rm -rf .
+          cp -r /tmp/dist-build/* .
+          touch .nojekyll
+          git add -A
+          git commit -m "Deploy $(date +%Y-%m-%dT%H:%M:%SZ)" || true
+          git push origin gh-pages --force
