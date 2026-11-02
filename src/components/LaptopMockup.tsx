@@ -163,7 +163,8 @@ function NexoraScreen() {
 }
 
 /** Реальный скриншот NEXORA, если файл добавлен в public/projects. */
-const NEXORA_SHOT = '/projects/nexora-3.webp'
+const BASE = import.meta.env.BASE_URL
+const NEXORA_SHOT = `${BASE}projects/nexora-3.webp`
 
 export function LaptopMockup() {
   const [shotReady, setShotReady] = useState(false)

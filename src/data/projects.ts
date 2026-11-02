@@ -27,6 +27,9 @@ export type Project = {
   vpn?: boolean
 }
 
+const BASE = import.meta.env.BASE_URL
+const toAsset = (path: string) => `${BASE}${path.replace(/^\//, '')}`
+
 export const projects: Project[] = [
   {
     id: 'autohub',
@@ -239,6 +242,12 @@ export const projects: Project[] = [
     vpn: true,
   },
 ]
+
+projects.forEach((project) => {
+  project.image = toAsset(project.image)
+  if (project.fallbackImage) project.fallbackImage = toAsset(project.fallbackImage)
+  if (project.gallery) project.gallery = project.gallery.map(toAsset)
+})
 
 export const featuredProjects = projects.filter((project) => project.featured)
 export const landingProjects = projects.filter((project) => !project.featured)
