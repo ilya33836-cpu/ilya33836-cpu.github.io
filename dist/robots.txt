@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+
+Disallow: /node_modules/
+Disallow: /dist/
+Disallow: /api/
+Disallow: /server/
+Disallow: /functions/
+Disallow: /deploy/
+Disallow: /*.zip$
+
+Sitemap: https://ilya33836-cpu.github.io/sitemap.xml
+
+Host: https://ilya33836-cpu.github.io/

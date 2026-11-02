@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <style>
+      .bg { fill: #fafafa; }
+      .accent { fill: #2563eb; }
+      .text-main { fill: #111827; font-family: 'Manrope', 'Inter', sans-serif; font-weight: 800; font-size: 48px; letter-spacing: -0.02em; }
+      .text-sub { fill: #6b7280; font-family: 'Inter', sans-serif; font-weight: 500; font-size: 24px; }
+    </style>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2563eb;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1d4ed8;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <rect class="bg" width="1200" height="630" rx="0" ry="0" />
+
+  <circle cx="1100" cy="-100" r="200" fill="url(#grad)" opacity="0.15" />
+  <circle cx="100" cy="730" r="200" fill="url(#grad)" opacity="0.1" />
+
+  <text x="120" y="300" class="text-main">ILYA</text>
+  <text x="120" y="360" class="text-main" fill="#2563eb">Web Developer</text>
+  <text x="120" y="430" class="text-sub">Сайты • Web App • CRM • SaaS • AI-агенты • Telegram-боты</text>
+  <text x="120" y="490" class="text-sub">Разработка цифровых продуктов для бизнеса под ключ</text>
+
+  <rect x="120" y="520" width="260" height="48" rx="12" fill="url(#grad)" />
+  <text x="150" y="555" fill="#ffffff" font-family="'Inter', sans-serif" font-weight="600" font-size="20px">Обсудить проект</text>
+</svg>
