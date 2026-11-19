@@ -25,7 +25,7 @@ export const pricingServices: PricingService[] = [
     id: 'landing',
     number: '01',
     title: 'Сайт-визитка / лендинг',
-    price: 'от 20 000 ₽',
+    price: 'от 15 000 ₽',
     description:
       'Современный сайт для презентации компании, услуги, продукта или проекта.',
     includes: [
@@ -91,7 +91,7 @@ export const pricingServices: PricingService[] = [
     id: 'automation',
     number: '03',
     title: 'Автоматизация бизнеса',
-    price: 'от 40 000 ₽',
+    price: 'от 19 900 ₽',
     description:
       'Связываем заявки, CRM, таблицы, почту, Telegram и AI в единый автоматизированный процесс.',
     includes: [
@@ -118,7 +118,7 @@ export const pricingServices: PricingService[] = [
     id: 'crm',
     number: '04',
     title: 'Сайт + админ-панель / CRM',
-    price: 'от 100 000 ₽',
+    price: 'от 50 000 ₽',
     description:
       'Полноценный цифровой продукт с сайтом и внутренней системой управления клиентами, заявками и бизнес-процессами.',
     includes: [
