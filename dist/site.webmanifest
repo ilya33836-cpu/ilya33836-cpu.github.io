@@ -1,0 +1,23 @@
+{
+  "name": "ILYA — Web Developer",
+  "short_name": "ILYA Dev",
+  "description": "Веб-разработка под ключ: сайты, Web App, CRM, SaaS, AI-агенты, Telegram-боты",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FAFAFA",
+  "theme_color": "#FAFAFA",
+  "orientation": "portrait",
+  "scope": "/",
+  "lang": "ru",
+  "dir": "ltr",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["developer", "web", "business"],
+  "screenshots": []
+}
