@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" width="1600" height="1000" role="img" aria-label="FORMA HOME — студия интерьеров">
+  <defs>
+    <linearGradient id="fh-bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FBFAF8" />
+      <stop offset="1" stop-color="#F3F1ED" />
+    </linearGradient>
+    <linearGradient id="fh-img1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#DCD8D0" />
+      <stop offset="1" stop-color="#C6C0B4" />
+    </linearGradient>
+    <linearGradient id="fh-img2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#E3E0DA" />
+      <stop offset="1" stop-color="#CFC9BD" />
+    </linearGradient>
+  </defs>
+
+  <rect width="1600" height="1000" fill="url(#fh-bg)" />
+
+  <g font-family="Arial, Helvetica, sans-serif">
+    <text x="86" y="70" font-size="19" font-weight="700" fill="#1C1B19" letter-spacing="5">FORMA</text>
+    <text x="86" y="90" font-size="11" fill="#8C8880" letter-spacing="4">HOME STUDIO</text>
+    <g font-size="13" fill="#6B6862" letter-spacing="1.5">
+      <text x="1080" y="74">ПРОЕКТЫ</text>
+      <text x="1196" y="74">УСЛУГИ</text>
+      <text x="1286" y="74">СТУДИЯ</text>
+      <text x="1386" y="74">КОНТАКТЫ</text>
+    </g>
+
+    <text x="86" y="230" font-size="14" fill="#8C8880" letter-spacing="3">ИНТЕРЬЕРЫ · АРХИТЕКТУРА</text>
+    <text x="86" y="300" font-size="64" font-weight="400" fill="#1C1B19" letter-spacing="-1">Пространства,</text>
+    <text x="86" y="370" font-size="64" font-weight="400" fill="#1C1B19" letter-spacing="-1">в которых</text>
+    <text x="86" y="440" font-size="64" font-weight="400" fill="#1C1B19" letter-spacing="-1">хочется жить.</text>
+    <text x="86" y="500" font-size="16" fill="#6B6862">Проектируем квартиры и дома в стиле современного</text>
+    <text x="86" y="526" font-size="16" fill="#6B6862">минимализма: фактуры, свет, тишина и много воздуха.</text>
+    <rect x="86" y="562" width="230" height="54" rx="4" fill="#1C1B19" />
+    <text x="201" y="596" font-size="13" font-weight="700" fill="#FBFAF8" text-anchor="middle" letter-spacing="1.5">ОБСУДИТЬ ПРОЕКТ</text>
+
+    <rect x="760" y="150" width="354" height="440" rx="4" fill="url(#fh-img1)" />
+    <rect x="1140" y="150" width="374" height="212" rx="4" fill="url(#fh-img2)" />
+    <rect x="1140" y="386" width="374" height="204" rx="4" fill="#E8E5DF" />
+    <text x="1164" y="440" font-size="12" fill="#8C8880" letter-spacing="2">КВАРТИРА 84 м²</text>
+    <text x="1164" y="486" font-size="26" font-weight="400" fill="#1C1B19">Светлая</text>
+    <text x="1164" y="518" font-size="26" font-weight="400" fill="#1C1B19">квартира</text>
+    <text x="1164" y="556" font-size="13" fill="#6B6862">Москва, 2025</text>
+
+    <line x1="86" y1="672" x2="1514" y2="672" stroke="#DDD8D0" />
+    <text x="86" y="724" font-size="13" fill="#8C8880" letter-spacing="3">ИЗБРАННЫЕ ПРОЕКТЫ</text>
+
+    <g>
+      <rect x="86" y="756" width="336" height="204" rx="4" fill="url(#fh-img2)" />
+      <text x="86" y="990" font-size="15" font-weight="400" fill="#1C1B19">Дом в Подмосковье</text>
+      <text x="422" y="990" font-size="13" fill="#8C8880" text-anchor="end">240 м²</text>
+
+      <rect x="446" y="756" width="336" height="204" rx="4" fill="url(#fh-img1)" />
+      <text x="446" y="990" font-size="15" font-weight="400" fill="#1C1B19">Апартаменты у реки</text>
+      <text x="782" y="990" font-size="13" fill="#8C8880" text-anchor="end">96 м²</text>
+
+      <rect x="806" y="756" width="336" height="204" rx="4" fill="#E8E5DF" />
+      <text x="806" y="990" font-size="15" font-weight="400" fill="#1C1B19">Студия 48 м²</text>
+      <text x="1142" y="990" font-size="13" fill="#8C8880" text-anchor="end">48 м²</text>
+
+      <rect x="1166" y="756" width="348" height="204" rx="4" fill="url(#fh-img2)" />
+      <text x="1166" y="990" font-size="15" font-weight="400" fill="#1C1B19">Офис студии</text>
+      <text x="1514" y="990" font-size="13" fill="#8C8880" text-anchor="end">310 м²</text>
+    </g>
+  </g>
+</svg>
