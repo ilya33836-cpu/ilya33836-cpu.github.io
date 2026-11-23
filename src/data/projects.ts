@@ -139,7 +139,7 @@ export const projects: Project[] = [
     title: 'AI Receptionist',
     category: 'AI Agents',
     description:
-      'ИИ-администратор для бизнеса, который автоматически общается с клиентами, консультирует по услугам и ценам, собирает заявки и передаёт обращения сотрудникам.',
+      'ИИ-администратор для бизнеса, который автоматически общается с клиентами, консультирует по услугам и ценам, собирает заявки и передаёт обращения сотрудникам. Также доступен как Telegram-бот: @DEMOTESTONGS_bot.',
     url: 'https://lumi-ai-receptionist.vercel.app/',
     image: '/projects/ai-receptionist-1.png',
     gallery: ['/projects/ai-receptionist-1.png'],
