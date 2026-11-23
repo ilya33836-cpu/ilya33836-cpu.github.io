@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" width="1600" height="1000" role="img" aria-label="DENTALINE — лендинг стоматологии">
+  <defs>
+    <linearGradient id="dl-hero" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#EFF6FF" />
+      <stop offset="1" stop-color="#E0EEFF" />
+    </linearGradient>
+    <linearGradient id="dl-photo" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#DBEAFE" />
+      <stop offset="1" stop-color="#BFDBFE" />
+    </linearGradient>
+  </defs>
+
+  <rect width="1600" height="1000" fill="#FFFFFF" />
+  <rect x="0" y="0" width="1600" height="620" fill="url(#dl-hero)" />
+
+  <g font-family="Arial, Helvetica, sans-serif">
+    <rect x="0" y="0" width="1600" height="86" fill="#FFFFFF" />
+    <circle cx="86" cy="43" r="16" fill="#2563EB" />
+    <text x="116" y="50" font-size="19" font-weight="700" fill="#111827" letter-spacing="0.5">DENTALINE</text>
+    <g font-size="14" fill="#6B7280">
+      <text x="900" y="49">Услуги</text>
+      <text x="990" y="49">Цены</text>
+      <text x="1074" y="49">Врачи</text>
+      <text x="1174" y="49">Отзывы</text>
+    </g>
+    <rect x="1268" y="24" width="180" height="40" rx="13" fill="#2563EB" />
+    <text x="1358" y="49" font-size="14" font-weight="700" fill="#FFFFFF" text-anchor="middle">Записаться</text>
+    <text x="1480" y="49" font-size="14" font-weight="600" fill="#111827">+7 900 000-00-00</text>
+
+    <text x="86" y="220" font-size="16" fill="#2563EB" letter-spacing="2">ЧАСТНАЯ СТОМАТОЛОГИЯ</text>
+    <text x="86" y="290" font-size="62" font-weight="700" fill="#111827">Лечим зубы</text>
+    <text x="86" y="356" font-size="62" font-weight="700" fill="#111827">без страха</text>
+    <text x="86" y="410" font-size="17" fill="#4B5563">Современное оборудование, врачи со стажем</text>
+    <text x="86" y="436" font-size="17" fill="#4B5563">и понятные цены, которые не меняются на приёме.</text>
+    <rect x="86" y="474" width="228" height="56" rx="16" fill="#2563EB" />
+    <text x="200" y="509" font-size="15" font-weight="700" fill="#FFFFFF" text-anchor="middle">Записаться на приём</text>
+    <rect x="330" y="474" width="200" height="56" rx="16" fill="#FFFFFF" stroke="#BFDBFE" />
+    <text x="430" y="509" font-size="15" font-weight="600" fill="#111827" text-anchor="middle">Смотреть цены</text>
+
+    <rect x="880" y="140" width="634" height="400" rx="32" fill="url(#dl-photo)" />
+    <circle cx="1060" cy="320" r="86" fill="#FFFFFF" opacity="0.55" />
+    <circle cx="1300" cy="300" r="52" fill="#FFFFFF" opacity="0.4" />
+    <rect x="880" y="440" width="270" height="100" rx="26" fill="#FFFFFF" />
+    <text x="908" y="478" font-size="13" fill="#6B7280">Ближайшая запись</text>
+    <text x="908" y="512" font-size="22" font-weight="700" fill="#111827">сегодня 18:30</text>
+
+    <text x="86" y="700" font-size="28" font-weight="700" fill="#111827">Услуги и цены</text>
+    <g>
+      <rect x="86" y="732" width="352" height="200" rx="24" fill="#FFFFFF" stroke="#E5E7EB" />
+      <text x="114" y="774" font-size="17" font-weight="700" fill="#111827">Консультация</text>
+      <text x="114" y="812" font-size="30" font-weight="700" fill="#2563EB">0 ₽</text>
+      <rect x="114" y="842" width="296" height="10" rx="5" fill="#EEF0F3" />
+      <rect x="114" y="864" width="240" height="10" rx="5" fill="#EEF0F3" />
+      <rect x="114" y="886" width="200" height="10" rx="5" fill="#EEF0F3" />
+
+      <rect x="462" y="732" width="352" height="200" rx="24" fill="#FFFFFF" stroke="#E5E7EB" />
+      <text x="490" y="774" font-size="17" font-weight="700" fill="#111827">Лечение кариеса</text>
+      <text x="490" y="812" font-size="30" font-weight="700" fill="#2563EB">от 4 500 ₽</text>
+      <rect x="490" y="842" width="296" height="10" rx="5" fill="#EEF0F3" />
+      <rect x="490" y="864" width="256" height="10" rx="5" fill="#EEF0F3" />
+      <rect x="490" y="886" width="180" height="10" rx="5" fill="#EEF0F3" />
+
+      <rect x="838" y="732" width="352" height="200" rx="24" fill="#FFFFFF" stroke="#E5E7EB" />
+      <text x="866" y="774" font-size="17" font-weight="700" fill="#111827">Имплантация</text>
+      <text x="866" y="812" font-size="30" font-weight="700" fill="#2563EB">от 32 000 ₽</text>
+      <rect x="866" y="842" width="296" height="10" rx="5" fill="#EEF0F3" />
+      <rect x="866" y="864" width="230" height="10" rx="5" fill="#EEF0F3" />
+      <rect x="866" y="886" width="150" height="10" rx="5" fill="#EEF0F3" />
+
+      <rect x="1214" y="732" width="300" height="200" rx="24" fill="#111827" />
+      <text x="1242" y="774" font-size="17" font-weight="700" fill="#FFFFFF">Отбеливание</text>
+      <text x="1242" y="812" font-size="30" font-weight="700" fill="#93C5FD">от 12 000 ₽</text>
+      <rect x="1242" y="842" width="244" height="10" rx="5" fill="#1E293B" />
+      <rect x="1242" y="864" width="200" height="10" rx="5" fill="#1E293B" />
+    </g>
+  </g>
+</svg>
