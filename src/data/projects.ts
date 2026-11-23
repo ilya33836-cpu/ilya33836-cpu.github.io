@@ -16,8 +16,11 @@ export type Project = {
   fallbackImage?: string
   /** Галерея экранов для модального окна. */
   gallery?: string[]
+  galleryAlt?: string[]
   /** Демо-доступы для авторизации. */
   accounts?: ProjectAccount[]
+  /** Отдельное примечание для конкретного демо. */
+  demoNote?: string
   stack: string[]
   features: string[]
   featured: boolean
@@ -37,17 +40,18 @@ export const projects: Project[] = [
     category: 'WEB APP / CRM',
     description:
       'Цифровая платформа автосервиса с личным кабинетом клиента, историей обслуживания, онлайн-записью и административной CRM.',
-    url: 'https://autohub-frontend-4hmz.onrender.com',
-    image: '/projects/autohub-1.webp',
+    url: 'https://autohub-blush.vercel.app/',
+    image: '/projects/autohub-home.webp',
     fallbackImage: '/projects/autohub.svg',
     gallery: [
-      '/projects/autohub-1.webp',
-      '/projects/autohub-2.webp',
-      '/projects/autohub-6.webp',
-      '/projects/autohub-5.webp',
-      '/projects/autohub-7.webp',
-      '/projects/autohub-8.webp',
-      '/projects/autohub-9.webp',
+      '/projects/autohub-home.webp',
+      '/projects/autohub-crm.webp',
+      '/projects/autohub-client.webp',
+    ],
+    galleryAlt: [
+      'Главный экран AUTOHUB',
+      'Сводка административной CRM AUTOHUB',
+      'Личный кабинет клиента AUTOHUB',
     ],
     stack: ['React', 'FastAPI', 'PostgreSQL'],
     features: [
@@ -57,7 +61,8 @@ export const projects: Project[] = [
       'Административная CRM',
     ],
     featured: true,
-    coldStart: true,
+    demoNote:
+      'Для открытия демо может потребоваться VPN, так как сайт размещён на зарубежном хостинге.',
     accounts: [
       { role: 'admin', login: 'admin', email: 'admin@autohub.ru', password: 'Admin-Demo-2026' },
       {

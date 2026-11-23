@@ -45,8 +45,7 @@ export function DemoNotice() {
               <h3 className="font-display text-[17px] font-bold text-danger">Обратите внимание</h3>
               <div className="mt-3 space-y-3 text-[15px] leading-relaxed text-[#7f1d1d]/80">
                 <p>
-                  В проектах <strong className="font-semibold text-danger">AUTOHUB</strong>,{' '}
-                  <strong className="font-semibold text-danger">NEXORA</strong> и{' '}
+                  В проектах <strong className="font-semibold text-danger">NEXORA</strong> и{' '}
                   <strong className="font-semibold text-danger">AI SALES AGENT</strong> вход в
                   аккаунт может выполниться{' '}
                   <strong className="font-semibold text-danger">не с первого раза</strong>.

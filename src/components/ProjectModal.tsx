@@ -85,10 +85,20 @@ export function ProjectModal({ project, onClose }: Props) {
             transition={{ type: 'spring', stiffness: 260, damping: 28 }}
             className="relative max-h-[92svh] w-full max-w-3xl overflow-y-auto rounded-t-[28px] bg-white shadow-[0_50px_120px_-40px_rgba(11,17,32,0.6)] sm:rounded-[32px]"
           >
+            {project.demoNote && (
+              <div className="px-6 pt-5 sm:px-9">
+                <p className="flex items-start gap-3 rounded-2xl border border-amber-300 bg-amber-50 px-4 py-3.5 text-[14px] font-medium leading-relaxed text-amber-950 sm:text-[15px]">
+                  <Info size={18} className="mt-0.5 shrink-0 text-amber-700" />
+                  <span>{project.demoNote}</span>
+                </p>
+              </div>
+            )}
+
             <div className="relative">
               <ProjectPreview
                 project={project}
                 src={mainSrc}
+                alt={project.galleryAlt?.[index] ?? `Интерфейс проекта ${project.title}`}
                 ratio="aspect-[16/9]"
                 onUnavailable={() => mainSrc && setBroken((prev) => [...prev, mainSrc])}
               />
@@ -142,7 +152,11 @@ export function ProjectModal({ project, onClose }: Props) {
                         key={item}
                         type="button"
                         onClick={() => setActiveSrc(item)}
-                        aria-label={`Показать скриншот ${itemIndex + 1}`}
+                        aria-label={
+                          project.galleryAlt?.[itemIndex]
+                            ? `Показать: ${project.galleryAlt[itemIndex]}`
+                            : `Показать скриншот ${itemIndex + 1}`
+                        }
                         aria-current={active}
                         title={`Кадр ${itemIndex + 1} из ${gallery.length}`}
                         className={`group/thumb relative h-[72px] w-28 shrink-0 cursor-pointer overflow-hidden rounded-2xl border-2 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-soft sm:h-20 sm:w-32 ${

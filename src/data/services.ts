@@ -155,7 +155,7 @@ export const pricingServices: PricingService[] = [
       {
         title: 'AUTOHUB',
         label: 'Смотреть проект',
-        url: 'https://autohub-frontend-4hmz.onrender.com',
+        url: 'https://autohub-blush.vercel.app/',
       },
       {
         title: 'NEXORA',

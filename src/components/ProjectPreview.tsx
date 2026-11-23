@@ -9,6 +9,7 @@ type Props = {
   eager?: boolean
   className?: string
   sizes?: string
+  alt?: string
   onUnavailable?: () => void
 }
 
@@ -33,6 +34,7 @@ export function ProjectPreview({
   eager = false,
   className = '',
   sizes = DEFAULT_SIZES,
+  alt = `Интерфейс проекта ${project.title}`,
   onUnavailable,
 }: Props) {
   const initial = src ?? project.image
@@ -87,7 +89,7 @@ export function ProjectPreview({
           src={imageSrc}
           srcSet={srcSet}
           sizes={srcSet ? sizes : undefined}
-          alt={`Интерфейс проекта ${project.title}`}
+          alt={alt}
           loading={eager ? 'eager' : 'lazy'}
           decoding="async"
           fetchPriority={eager ? 'high' : 'auto'}
